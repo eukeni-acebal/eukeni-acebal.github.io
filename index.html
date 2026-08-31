@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Areté · Materiales de filosofía para Bachillerato</title>
+<meta name="author" content="Eukeni Acebal">
+<meta name="description" content="Colección Areté: manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos y en web y PDF.">
+<meta property="og:title" content="Areté · Materiales de filosofía para Bachillerato">
+<meta property="og:description" content="Manuales y cuadernos de Filosofía e Historia de la Filosofía, en castellano y euskera. Licencia libre CC BY-SA 4.0.">
+<meta property="og:type" content="website">
+
+<!--
+  ============================================================
+  HUB DE LA COLECCIÓN ARETÉ
+  Repo público `eukeni-acebal.github.io` — el SITIO DE USUARIO, y tiene que
+  llamarse exactamente así. Cambiado el 2026-08-31 (D235): estaba previsto
+  como repo de proyecto `arete`, pero desde ahí los volúmenes no pueden
+  colgar como /hf/, /fh/…, porque un repo de proyecto solo se sirve a sí
+  mismo. Como sitio de usuario, el hub queda en la raíz, los seis volúmenes
+  cuelgan de él y el dominio propio se configura UNA vez aquí: los repos de
+  volumen lo heredan. Por eso los enlaces de VOLUMENES son RELATIVOS
+  (`/hf/`): funcionan igual en github.io y en el dominio, y no hay que
+  tocarlos al mudarse. Necesita `.nojekyll` al lado (GitHub Pages).
+
+  DEPENDENCIA EXTERNA, declarada porque antes aquí decía lo contrario: desde
+  el 2026-08-31 la página carga Source Serif 4 y Source Sans 3 de Google
+  Fonts, que son las del tema Areté (`quarto-theme/custom.scss`) y las que
+  ya usan los seis sitios. Deja de funcionar offline con su tipografía; con
+  la pila de reserva (Georgia / system-ui) se lee igual. Se acepta a cambio
+  de que el hub y los volúmenes no parezcan dos proyectos distintos.
+
+  IDIOMAS (D6, D7): el castellano es la fuente. EL EUSKERA NO ESTÁ ESCRITO.
+  El andamiaje del selector está montado —ver el objeto I18N de abajo— pero
+  MOSTRAR_SELECTOR está en false para no publicar medio sitio. Cuando la
+  traducción esté hecha y revisada, se rellena `eu` y se pone en true.
+  Para añadir inglés el curso que viene: una clave `en` más en I18N y una
+  entrada en IDIOMAS. Nada más.
+
+  DATOS DE LOS VOLÚMENES: el array VOLUMENES es la única fuente.
+  PUESTOS AL DÍA EL 2026-08-31 (D235), y las tres cosas estaban mal porque
+  el fichero es del 23 y el mundo cambió el 31:
+   · Filosofía 1 figuraba como «Septiembre de 2026» y sin enlaces. Está
+     PUBLICADO en las dos lenguas desde el 31-08 (D234).
+   · Los cuatro PDF apuntaban a los nombres internos (historia-filosofia-es
+     .pdf…). D234 fijó que el PDF de release se llama por el DESCRIPTOR
+     público del volumen, así que ahora son historia-de-la-filosofia.pdf,
+     filosofiaren-historia.pdf, cuaderno-pau-filosofia.pdf y
+     usap-koadernoa-filosofia.pdf. Sin este cambio, todos los botones de
+     descarga daban 404 el día de publicar.
+   · Las URL de web eran absolutas a github.io; ahora son relativas.
+  Los nombres de PDF dependen de que el release se suba con ese nombre: si
+  se cambia allí, hay que cambiarlo aquí. Es el único acoplamiento que queda.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap">
+<style>
+:root{
+  /* Tokens del tema Areté (quarto-theme/custom.scss): el hub y los seis
+     volúmenes comparten paleta y tipografía, para que pasar de la portada
+     a un libro no cambie el suelo bajo los pies. */
+  --papel:#f6f1e4; --tinta:#2b241a; --suave:#6e6353; --linea:#ddd3bd;
+  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.07);
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
+    --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font-family:var(--sans); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.env{max-width:60rem;margin:0 auto;padding:0 1.5rem}
+a{color:var(--acento)}
+
+/* ---------- cabecera ---------- */
+header{padding:4.5rem 0 3rem;border-bottom:1px solid var(--linea)}
+.marca{
+  font-family:var(--serif); font-size:clamp(3.2rem,11vw,5.5rem); line-height:.95;
+  letter-spacing:-.02em; margin:0; font-weight:600;
+}
+.marca .tilde{color:var(--acento)}
+.lema{
+  font-family:var(--serif); font-size:clamp(1.15rem,3.2vw,1.5rem); font-style:italic;
+  color:var(--suave); margin:.9rem 0 0; max-width:34rem;
+}
+.firma{
+  margin:1.8rem 0 0; font-size:.85rem; letter-spacing:.11em; text-transform:uppercase;
+  color:var(--suave);
+}
+.idiomas{display:none;gap:.4rem;margin:2rem 0 0}
+.idiomas.visible{display:flex}
+.idiomas button{
+  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  background:none;border:1px solid var(--linea);color:var(--suave);
+  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
+}
+.idiomas button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+
+/* ---------- secciones ---------- */
+section{padding:3.5rem 0}
+section + section{border-top:1px solid var(--linea)}
+h2{
+  font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:-.01em;
+  margin:0 0 .4rem;
+}
+.sub{color:var(--suave);margin:0 0 2.2rem;max-width:42rem}
+p{max-width:42rem}
+
+/* ---------- curso + tarjetas ---------- */
+.curso{margin:0 0 2.8rem}
+.curso:last-child{margin-bottom:0}
+.curso-rotulo{
+  display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;
+  margin:0 0 1.1rem;padding-bottom:.6rem;border-bottom:1px solid var(--linea);
+}
+.curso-rotulo b{font-family:var(--serif);font-size:1.35rem;font-weight:600}
+.curso-rotulo span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
+.vol{
+  background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;
+  padding:1.3rem 1.4rem 1.2rem;display:flex;flex-direction:column;
+  transition:transform .15s,box-shadow .15s;
+}
+.vol.viva:hover{transform:translateY(-2px);box-shadow:0 .5rem 1.4rem var(--sombra)}
+.vol.pendiente{opacity:.62;border-style:dashed;background:none}
+.vol h3{font-family:var(--serif);font-size:1.22rem;font-weight:600;margin:0 0 .15rem;line-height:1.25}
+.vol .tipo{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0 0 .9rem}
+.vol .nota{font-size:.92rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
+.marcas{display:flex;gap:.4rem;flex-wrap:wrap;margin:0 0 .9rem}
+.marca-idioma,.estado{
+  font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+  padding:.2rem .55rem;border-radius:.3rem;
+}
+.marca-idioma{background:var(--acento-flojo);color:var(--acento)}
+.estado{border:1px solid var(--linea);color:var(--suave)}
+.acciones{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:auto}
+.btn{
+  font-size:.88rem;text-decoration:none;padding:.5rem .95rem;border-radius:.4rem;
+  border:1px solid var(--acento);transition:.15s;white-space:nowrap;
+}
+.btn.principal{background:var(--acento);color:var(--papel)}
+.btn.principal:hover{filter:brightness(1.1)}
+.btn.secundario{color:var(--acento)}
+.btn.secundario:hover{background:var(--acento-flojo)}
+.sin-enlace{font-size:.88rem;color:var(--suave);font-style:italic}
+
+/* ---------- método ---------- */
+.metodo{max-width:42rem}
+.metodo p{margin:0 0 1.1rem}
+.hechos{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.1rem}
+.hechos li{display:flex;gap:1rem;padding:.7rem 0;border-top:1px solid var(--linea);align-items:baseline}
+.hechos b{font-family:var(--serif);font-size:1.5rem;color:var(--acento);min-width:5.5rem;font-weight:600}
+.hechos span{font-size:.94rem;color:var(--suave)}
+
+/* ---------- pie ---------- */
+footer{border-top:1px solid var(--linea);padding:2.8rem 0 4rem;font-size:.92rem;color:var(--suave)}
+footer p{margin:0 0 .7rem}
+.cc{display:inline-flex;gap:.3rem;align-items:center;font-weight:600;color:var(--acento)}
+@media (max-width:32rem){
+  body{font-size:16px}
+  header{padding:3rem 0 2.2rem}
+  .hechos li{flex-direction:column;gap:.1rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="env">
+    <h1 class="marca" data-i18n="marca">Aret<span class="tilde">é</span></h1>
+    <p class="lema" data-i18n="lema">Manuales y cuadernos de filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos, en la web y en papel.</p>
+    <p class="firma" data-i18n="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
+    <nav class="idiomas" id="idiomas" aria-label="Idioma"></nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="env">
+    <h2 data-i18n="que-t">Qué es esto</h2>
+    <div class="metodo">
+      <p data-i18n="que-1">Areté es una colección de libros de texto de filosofía escritos para un aula concreta: la de un instituto público de Barakaldo. No los edita nadie. No cuestan nada. Cubren el currículo oficial completo de las dos asignaturas de Bachillerato y existen en las dos lenguas en que se estudia aquí.</p>
+      <p data-i18n="que-2">Cada volumen se publica de dos maneras a la vez: una <strong>edición web</strong> que se lee en cualquier pantalla y se enlaza sección por sección, y un <strong>PDF</strong> maquetado para imprimir y encuadernar. Es el mismo texto. Y son libros vivos: se corrigen y se amplían curso a curso, en lugar de esperar a una reedición cada seis años.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2 data-i18n="col-t">La colección</h2>
+    <p class="sub" data-i18n="col-s">Los de 2.º de Bachillerato están completos y disponibles en las dos lenguas. Los de 1.º llegan en septiembre, para el curso 2026-2027.</p>
+    <div id="coleccion"></div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2 data-i18n="met-t">Cómo están hechos</h2>
+    <div class="metodo">
+      <p data-i18n="met-1">Conviene decirlo en la puerta y no en la letra pequeña: <strong>los borradores de estos libros no están escritos a mano.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. La concepción, la estructura, la selección de qué entra y qué se queda fuera, el ajuste al currículo, la terminología y la revisión final son mías, y mía es la responsabilidad de cuanto se afirma en ellos.</p>
+      <p data-i18n="met-2">Lo digo porque es verdad y porque el procedimiento está documentado: hay un registro de decisiones numerado, un mapa de cobertura del currículo apartado por apartado, un control de derechos de cita texto a texto y un rastro de autoría pieza a pieza que permite saber qué mano redactó cada tramo. Nada de eso es habitual en un libro de texto, y creo que debería serlo.</p>
+      <p data-i18n="met-3"><strong>Y no doy ninguna página por infalible.</strong> Si encuentras una errata, algo mal atribuido o algo que pueda explicarse mejor, escríbeme diciéndome dónde está: cada aviso mejora la edición siguiente.</p>
+      <p data-i18n="met-4"><a href="metodo.html"><strong>El procedimiento completo, paso a paso →</strong></a> Con las cifras medidas y, sobre todo, con lo que este método <em>no</em> resuelve.</p>
+      <ul class="hechos">
+        <li><b data-i18n="h1n">60 %</b><span data-i18n="h1t">del manual de Filosofía de 1.º es, como suelo medido, prosa que escribí a mano para su primera edición.</span></li>
+        <li><b data-i18n="h2n">272.000</b><span data-i18n="h2t">palabras de cuerpo en castellano, con el currículo oficial completo de las dos asignaturas. En euskera, 2.º de Bachillerato está completo.</span></li>
+        <li><b data-i18n="h3n">CC</b><span data-i18n="h3t">licencia libre BY-SA 4.0: se puede copiar, adaptar y construir encima.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="env">
+    <p data-i18n="pie-1"><span class="cc">Creative Commons BY-SA 4.0</span> — puedes usar, copiar, compartir y adaptar estos libros, incluso para construir materiales nuevos, reconociendo la autoría y compartiendo lo que hagas con la misma libertad. Los textos de filósofos citados en ellos pertenecen a sus autores y traductores y no están cubiertos por esta licencia.</p>
+    <p data-i18n="pie-2">Eukeni Acebal · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================
+   1 · LOS VOLÚMENES — fuente única de la página.
+   `web` y `pdf` a null = todavía no publicado: la tarjeta sale
+   atenuada, sin enlaces, con el texto de `estado`.
+   URL comprobadas el 2026-08-23.
+   ============================================================ */
+const CURSOS = [
+  {
+    id: "bach2",
+    titulo: { es: "Historia de la Filosofía", eu: "" },
+    curso:  { es: "2.º de Bachillerato",      eu: "" },
+    volumenes: [
+      {
+        titulo: "Historia de la Filosofía",
+        tipo:   { es: "Manual", eu: "" },
+        lengua: "Castellano",
+        nota:   { es: "El pensamiento occidental desde sus inicios hasta hoy, en cinco partes y veintidós temas.", eu: "" },
+        web: "/hf/",
+        pdf: "https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf"
+      },
+      {
+        titulo: "Filosofiaren Historia",
+        tipo:   { es: "Manual", eu: "" },
+        lengua: "Euskera",
+        nota:   { es: "El mismo manual en euskera, con el aparato completo y las mismas remisiones.", eu: "" },
+        web: "/fh/",
+        pdf: "https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf"
+      },
+      {
+        titulo: "Preparación de la PAU",
+        tipo:   { es: "Cuaderno", eu: "" },
+        lengua: "Castellano",
+        nota:   { es: "El método de cada ejercicio, las cinco lecturas por dentro y los cuatro exámenes resueltos y comentados.", eu: "" },
+        web: "/pau/",
+        pdf: "https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf"
+      },
+      {
+        titulo: "USaPerako prestakuntza",
+        tipo:   { es: "Cuaderno", eu: "" },
+        lengua: "Euskera",
+        nota:   { es: "El mismo cuaderno en euskera, con el vocabulario oficial de la prueba y los cuatro exámenes resueltos.", eu: "" },
+        web: "/usap/",
+        pdf: "https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf"
+      }
+    ]
+  },
+  {
+    id: "bach1",
+    titulo: { es: "Filosofía", eu: "" },
+    curso:  { es: "1.º de Bachillerato", eu: "" },
+    volumenes: [
+      {
+        titulo: "Filosofía",
+        tipo:   { es: "Manual", eu: "" },
+        lengua: "Castellano",
+        nota:   { es: "Siete unidades y treinta y ocho temas: de qué es la filosofía a la estética, pasando por antropología, epistemología, ética y filosofía política.", eu: "" },
+        estado: { es: "Publicado", eu: "" },
+        web: "/filosofia-manual/",
+        pdf: "https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf"
+      },
+      {
+        titulo: "Filosofia",
+        tipo:   { es: "Manual", eu: "" },
+        lengua: "Euskera",
+        nota:   { es: "El mismo manual en euskera.", eu: "" },
+        estado: { es: "Publicado", eu: "" },
+        web: "/filosofia-testuliburua/",
+        pdf: "https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf"
+      },
+      {
+        titulo: "Filosofía · Cuaderno",
+        tipo:   { es: "Cuaderno", eu: "" },
+        lengua: "Castellano y euskera",
+        nota:   { es: "Textos, disertación y actividades para el trabajo de aula.", eu: "" },
+        estado: { es: "En preparación", eu: "" },
+        web: null, pdf: null
+      }
+    ]
+  }
+];
+
+/* ============================================================
+   2 · IDIOMAS
+   MOSTRAR_SELECTOR queda en FALSE mientras el euskera no esté
+   traducido y revisado (D6, D7: el castellano es la fuente y el
+   euskera se obtiene por traducción con revisión humana; nadie
+   debe redactarlo por su cuenta).
+   Para activarlo: rellenar todas las claves `eu` de I18N y de
+   CURSOS, y poner MOSTRAR_SELECTOR en true.
+   ============================================================ */
+const MOSTRAR_SELECTOR = false;
+const IDIOMAS = [
+  { clave: "es", rotulo: "Castellano" },
+  { clave: "eu", rotulo: "Euskara" }
+];
+
+const I18N = {
+  es: {
+    /* Las cadenas castellanas viven en el HTML, que es la fuente.
+       Este objeto solo se usa para los idiomas de traducción. */
+  },
+  eu: {
+    /* PENDIENTE DE TRADUCCIÓN — no rellenar sin revisión humana.
+       Claves: marca, lema, firma, que-t, que-1, que-2, col-t, col-s,
+       met-t, met-1, met-2, met-3, h1n, h1t, h2n, h2t, h3n, h3t,
+       pie-1, pie-2, ui-web, ui-pdf, ui-lengua. */
+  }
+};
+
+const UI = {
+  es: { web: "Leer en la web", pdf: "Descargar PDF" },
+  eu: { web: "", pdf: "" }
+};
+
+/* ============================================================
+   3 · PINTADO
+   ============================================================ */
+let idioma = "es";
+
+const t = (campo) =>
+  (campo && typeof campo === "object") ? (campo[idioma] || campo.es || "") : (campo || "");
+
+function tarjeta(v) {
+  const viva = Boolean(v.web || v.pdf);
+  const art = document.createElement("article");
+  art.className = "vol " + (viva ? "viva" : "pendiente");
+
+  const marcas = `<div class="marcas">
+      <span class="marca-idioma">${v.lengua}</span>
+      ${viva ? "" : `<span class="estado">${t(v.estado)}</span>`}
+    </div>`;
+
+  const acciones = viva
+    ? `<div class="acciones">
+         ${v.web ? `<a class="btn principal" href="${v.web}">${UI[idioma].web || UI.es.web}</a>` : ""}
+         ${v.pdf ? `<a class="btn secundario" href="${v.pdf}">${UI[idioma].pdf || UI.es.pdf}</a>` : ""}
+       </div>`
+    : "";
+
+  art.innerHTML = `<h3>${v.titulo}</h3>
+    <p class="tipo">${t(v.tipo)}</p>
+    ${marcas}
+    <p class="nota">${t(v.nota)}</p>
+    ${acciones}`;
+  return art;
+}
+
+function pintaColeccion() {
+  const destino = document.getElementById("coleccion");
+  destino.textContent = "";
+  for (const c of CURSOS) {
+    const bloque = document.createElement("div");
+    bloque.className = "curso";
+    const rot = document.createElement("div");
+    rot.className = "curso-rotulo";
+    rot.innerHTML = `<b>${t(c.titulo)}</b><span>${t(c.curso)}</span>`;
+    const rej = document.createElement("div");
+    rej.className = "rejilla";
+    c.volumenes.forEach((v) => rej.appendChild(tarjeta(v)));
+    bloque.append(rot, rej);
+    destino.appendChild(bloque);
+  }
+}
+
+function aplicaIdioma(nuevo) {
+  idioma = nuevo;
+  document.documentElement.lang = nuevo;
+  const dicc = I18N[nuevo] || {};
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const txt = dicc[el.dataset.i18n];
+    if (txt) el.innerHTML = txt;          // sin traducción, se queda el castellano
+  });
+  pintaColeccion();
+  document.querySelectorAll("#idiomas button").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.lang === nuevo));
+  });
+}
+
+function montaSelector() {
+  if (!MOSTRAR_SELECTOR) return;
+  const nav = document.getElementById("idiomas");
+  nav.classList.add("visible");
+  IDIOMAS.forEach((l) => {
+    const b = document.createElement("button");
+    b.textContent = l.rotulo;
+    b.dataset.lang = l.clave;
+    b.setAttribute("aria-pressed", String(l.clave === idioma));
+    b.addEventListener("click", () => aplicaIdioma(l.clave));
+    nav.appendChild(b);
+  });
+}
+
+pintaColeccion();
+montaSelector();
+</script>
+</body>
+</html>

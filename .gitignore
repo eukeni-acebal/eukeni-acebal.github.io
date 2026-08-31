@@ -1,0 +1,4 @@
+# El hub es un fichero suelto: aquí solo debe vivir index.html, .nojekyll y esto.
+# macOS siembra .DS_Store en cada carpeta que se abre en el Finder, y en los
+# otros repos de sitio se han colado por no tener este fichero.
+.DS_Store
