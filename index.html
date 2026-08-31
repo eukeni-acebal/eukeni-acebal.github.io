@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
 <title>Areté · Materiales de filosofía para Bachillerato</title>
 <meta name="author" content="Eukeni Acebal">
 <meta name="description" content="Colección Areté: manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos y en web y PDF.">
@@ -68,10 +69,14 @@
   --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){
-  :root{
+  :root:not([data-tema="claro"]){
     --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
     --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
   }
+}
+:root[data-tema="oscuro"]{
+  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
+  --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -106,6 +111,13 @@ header{padding:4.5rem 0 3rem;border-bottom:1px solid var(--linea)}
   padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
 }
 .idiomas button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+.tema{display:flex;gap:.4rem;margin:1rem 0 0}
+.tema button{
+  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  background:none;border:1px solid var(--linea);color:var(--suave);
+  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
+}
+.tema button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
 
 /* ---------- secciones ---------- */
 section{padding:3.5rem 0}
@@ -207,6 +219,11 @@ footer p{margin:0 0 .7rem}
     <p class="lema" data-i18n="lema">Manuales y cuadernos de filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos, en la web y en papel.</p>
     <p class="firma" data-i18n="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
     <nav class="idiomas" id="idiomas" aria-label="Idioma"></nav>
+    <nav class="tema" id="tema" aria-label="Tema de color">
+      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
+    </nav>
   </div>
 </header>
 
@@ -217,7 +234,7 @@ footer p{margin:0 0 .7rem}
     <h2 data-i18n="que-t">Qué es esto</h2>
     <div class="metodo">
       <p data-i18n="que-1">Areté es una colección de libros de texto de filosofía escritos para un aula concreta: la de un instituto público de Barakaldo. No los edita nadie. No cuestan nada. Cubren el currículo oficial completo de las dos asignaturas de Bachillerato y existen en las dos lenguas en que se estudia aquí.</p>
-      <p data-i18n="que-2">Cada volumen se publica de dos maneras a la vez: una <strong>edición web</strong> que se lee en cualquier pantalla y se enlaza sección por sección, y un <strong>PDF</strong> maquetado para imprimir y encuadernar. Es el mismo texto. Y son libros vivos: se corrigen y se amplían curso a curso, en lugar de esperar a una reedición cada seis años.</p>
+      <p data-i18n="que-2">Publico cada volumen de dos maneras a la vez: una <strong>edición web</strong> que se lee en cualquier pantalla y enlaza sección por sección, y un <strong>PDF</strong> maquetado para imprimir y encuadernar. Es el mismo texto. Y son libros vivos: los corrijo y los amplío curso a curso, en lugar de esperar a una reedición cada seis años.</p>
     </div>
   </div>
 </section>
@@ -242,16 +259,16 @@ footer p{margin:0 0 .7rem}
         <div class="rol-botones">
           <a class="btn secundario" href="/filosofia-manual/" data-i18n="pr-b1">Índice · Filosofía (1.º)</a>
           <a class="btn secundario" href="/hf/" data-i18n="pr-b2">Índice · Historia de la Filosofía (2.º)</a>
-          <a class="btn secundario" href="metodo.html" data-i18n="pr-b3">Cómo están hechos</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Profesorado" data-i18n="pr-b4">Escribir</a>
+          <a class="btn secundario" href="metodo.html" data-i18n="pr-b3">Cómo los he hecho</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Profesorado" data-i18n="pr-b4">Escríbeme</a>
         </div>
       </article>
       <article class="rol">
         <h3 data-i18n="ad-h">Administración educativa</h3>
-        <p data-i18n="ad-p">Antes de adoptar algo así hace falta saber quién responde de ello y qué procedimiento hay detrás: registro de decisiones, control de derechos de cita y rastro de autoría, documentados y abiertos a inspección. Y es gratuito, con licencia libre CC BY-SA.</p>
+        <p data-i18n="ad-p">Antes de adoptar algo así hace falta saber quién responde de ello y qué procedimiento hay detrás: llevo un registro de decisiones, un control de derechos de cita y un rastro de autoría, documentados y abiertos a inspección. Y es gratuito, con licencia libre CC BY-SA.</p>
         <div class="rol-botones">
-          <a class="btn secundario" href="metodo.html" data-i18n="ad-b1">Cómo están hechos</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Administraci%C3%B3n%20educativa" data-i18n="ad-b2">Escribir</a>
+          <a class="btn secundario" href="metodo.html" data-i18n="ad-b1">Cómo los he hecho</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Administraci%C3%B3n%20educativa" data-i18n="ad-b2">Escríbeme</a>
         </div>
       </article>
     </div>
@@ -269,7 +286,7 @@ footer p{margin:0 0 .7rem}
 <section>
   <div class="env">
     <h2 data-i18n="desc-t">Descargar el paquete completo</h2>
-    <p class="sub" data-i18n="desc-s">Los seis PDF publicados hasta hoy, uno por uno, sin pasar por cada portada.</p>
+    <p class="sub" data-i18n="desc-s">Los seis PDF que he publicado hasta hoy, uno por uno, sin pasar por cada portada.</p>
     <ul class="descargas">
       <li><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Filosofía · Manual <small>1.º · castellano</small></a></li>
       <li><a href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">Filosofia <small>1.º · euskera</small></a></li>
@@ -283,14 +300,13 @@ footer p{margin:0 0 .7rem}
 
 <section>
   <div class="env">
-    <h2 data-i18n="met-t">Cómo están hechos</h2>
+    <h2 data-i18n="met-t">Cómo los he hecho</h2>
     <div class="metodo">
-      <p data-i18n="met-1">Conviene decirlo en la puerta y no en la letra pequeña: <strong>los borradores de estos libros no están escritos a mano.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. La concepción, la estructura, la selección de qué entra y qué se queda fuera, el ajuste al currículo, la terminología y la revisión final son mías, y mía es la responsabilidad de cuanto se afirma en ellos.</p>
+      <p data-i18n="met-1">Conviene decirlo en la puerta y no en la letra pequeña: <strong>no escribo a mano los borradores de estos libros.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. La concepción, la estructura, la selección de qué entra y qué se queda fuera, el ajuste al currículo, la terminología y la revisión final son mías, y mía es la responsabilidad de cuanto afirmo en ellos.</p>
       <p data-i18n="met-2">Lo digo porque es verdad y porque el procedimiento está documentado: hay un registro de decisiones numerado, un mapa de cobertura del currículo apartado por apartado, un control de derechos de cita texto a texto y un rastro de autoría pieza a pieza que permite saber qué mano redactó cada tramo. Nada de eso es habitual en un libro de texto, y creo que debería serlo.</p>
       <p data-i18n="met-3"><strong>Y no doy ninguna página por infalible.</strong> Si encuentras una errata, algo mal atribuido o algo que pueda explicarse mejor, escríbeme diciéndome dónde está: cada aviso mejora la edición siguiente.</p>
       <p data-i18n="met-4"><a href="metodo.html"><strong>El procedimiento completo, paso a paso →</strong></a> Con las cifras medidas y, sobre todo, con lo que este método <em>no</em> resuelve.</p>
       <ul class="hechos">
-        <li><b data-i18n="h1n">60 %</b><span data-i18n="h1t">del manual de Filosofía de 1.º es, como suelo medido, prosa que escribí a mano para su primera edición.</span></li>
         <li><b data-i18n="h2n">272.000</b><span data-i18n="h2t">palabras de cuerpo en castellano, con el currículo oficial completo de las dos asignaturas. En euskera, 2.º de Bachillerato está completo.</span></li>
         <li><b data-i18n="h3n">CC</b><span data-i18n="h3t">licencia libre BY-SA 4.0: se puede copiar, adaptar y construir encima.</span></li>
       </ul>
@@ -301,12 +317,12 @@ footer p{margin:0 0 .7rem}
 <section>
   <div class="env">
     <h2 data-i18n="nov-t">Qué ha cambiado</h2>
-    <p class="sub" data-i18n="nov-s">Son libros vivos: se corrigen y se amplían curso a curso. Las últimas novedades.</p>
+    <p class="sub" data-i18n="nov-s">Son libros vivos: los corrijo y los amplío curso a curso. Las últimas novedades.</p>
     <ul class="novedades">
-      <li><time>31-08-2026</time><span data-i18n="nov-1">El manual de Filosofía de 1.º se publica en las dos lenguas, en web y en PDF.</span></li>
-      <li><time>31-08-2026</time><span data-i18n="nov-2">Las seis portadas estrenan botones directos —leer, PDF, otra lengua, avisar de una errata— y el distintivo de licencia, visibles también desde dentro de cada libro.</span></li>
-      <li><time>28-08-2026</time><span data-i18n="nov-3">Cierra la traducción al euskera de Filosofía de 1.º: 52 piezas, con paridad exacta respecto al castellano.</span></li>
-      <li><time>25-08-2026</time><span data-i18n="nov-4">El aspecto visual se unifica entre esta portada y los seis libros: misma paleta y tipografía.</span></li>
+      <li><time>31-08-2026</time><span data-i18n="nov-1">Publico el manual de Filosofía de 1.º en las dos lenguas, en web y en PDF.</span></li>
+      <li><time>31-08-2026</time><span data-i18n="nov-2">Doy a las seis portadas botones directos —leer, PDF, otra lengua, avisar de una errata— y el distintivo de licencia, visibles también desde dentro de cada libro.</span></li>
+      <li><time>28-08-2026</time><span data-i18n="nov-3">Cierro la traducción al euskera de Filosofía de 1.º: 52 piezas, con paridad exacta respecto al castellano.</span></li>
+      <li><time>25-08-2026</time><span data-i18n="nov-4">Unifico el aspecto visual entre esta portada y los seis libros: misma paleta y tipografía.</span></li>
     </ul>
   </div>
 </section>
@@ -520,8 +536,31 @@ function montaSelector() {
   });
 }
 
+function fijaTema(t) {
+  if (t === "claro" || t === "oscuro") {
+    document.documentElement.setAttribute("data-tema", t);
+  } else {
+    document.documentElement.removeAttribute("data-tema");
+    t = "sistema";
+  }
+  try { localStorage.setItem("arete-tema", t); } catch (e) {}
+  document.querySelectorAll("#tema button").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.tema === t));
+  });
+}
+
+function montaTema() {
+  let guardado = "sistema";
+  try { guardado = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
+  document.querySelectorAll("#tema button").forEach((b) => {
+    b.addEventListener("click", () => fijaTema(b.dataset.tema));
+  });
+  fijaTema(guardado);
+}
+
 pintaColeccion();
 montaSelector();
+montaTema();
 </script>
 </body>
 </html>

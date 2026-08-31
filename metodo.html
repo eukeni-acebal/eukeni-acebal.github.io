@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cómo están hechos estos libros · Areté</title>
+<script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
+<title>Cómo he hecho estos libros · Areté</title>
 <meta name="author" content="Eukeni Acebal">
 <meta name="description" content="El procedimiento completo con que se han escrito los manuales de la colección Areté: qué hace el autor, qué hace el modelo de lenguaje, cómo se verifica y qué no resuelve este método.">
-<meta property="og:title" content="Cómo están hechos estos libros · Areté">
+<meta property="og:title" content="Cómo he hecho estos libros · Areté">
 <meta property="og:description" content="El procedimiento completo, incluido lo que no funciona.">
 <meta property="og:type" content="article">
 
@@ -43,10 +44,14 @@
   --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){
-  :root{
+  :root:not([data-tema="claro"]){
     --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
     --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
   }
+}
+:root[data-tema="oscuro"]{
+  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
+  --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -95,6 +100,14 @@ h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:1.8rem 0 .5
        border-radius:0 .5rem .5rem 0;padding:1.1rem 1.3rem;margin:1.5rem 0}
 .aviso p:last-child{margin-bottom:0}
 
+.tema{display:flex;gap:.4rem;margin:1.4rem 0 0}
+.tema button{
+  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  background:none;border:1px solid var(--linea);color:var(--suave);
+  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
+}
+.tema button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+
 footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;color:var(--suave)}
 @media (max-width:34rem){
   body{font-size:16px}
@@ -108,8 +121,13 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
 <header>
   <div class="env">
     <a class="volver" href="./">← Areté</a>
-    <h1>Cómo están hechos estos libros</h1>
+    <h1>Cómo he hecho estos libros</h1>
     <p class="entradilla">Incluido lo que este método no resuelve, que es la parte que suele faltar.</p>
+    <nav class="tema" id="tema" aria-label="Tema de color">
+      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
+    </nav>
   </div>
 </header>
 
@@ -264,5 +282,28 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
   </div>
 </footer>
 
+<script>
+"use strict";
+
+function fijaTema(t) {
+  if (t === "claro" || t === "oscuro") {
+    document.documentElement.setAttribute("data-tema", t);
+  } else {
+    document.documentElement.removeAttribute("data-tema");
+    t = "sistema";
+  }
+  try { localStorage.setItem("arete-tema", t); } catch (e) {}
+  document.querySelectorAll("#tema button").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.tema === t));
+  });
+}
+
+let guardado = "sistema";
+try { guardado = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
+document.querySelectorAll("#tema button").forEach((b) => {
+  b.addEventListener("click", () => fijaTema(b.dataset.tema));
+});
+fijaTema(guardado);
+</script>
 </body>
 </html>
