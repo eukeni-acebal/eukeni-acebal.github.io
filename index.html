@@ -172,6 +172,31 @@ footer p{margin:0 0 .7rem}
   header{padding:3rem 0 2.2rem}
   .hechos li{flex-direction:column;gap:.1rem}
 }
+
+/* ---------- roles ---------- */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.1rem;margin-top:.5rem}
+.rol{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;padding:1.4rem 1.5rem;display:flex;flex-direction:column}
+.rol h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:0 0 .6rem}
+.rol p{font-size:.95rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
+.rol-botones{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
+
+/* ---------- descargas ---------- */
+.descargas{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}
+.descargas li{display:flex}
+.descargas a{
+  flex:1;font-size:.9rem;text-decoration:none;padding:.6rem 1rem;border-radius:.4rem;
+  border:1px solid var(--linea);color:var(--tinta);display:flex;justify-content:space-between;gap:.6rem;
+  align-items:baseline;
+}
+.descargas a:hover{border-color:var(--acento);color:var(--acento)}
+.descargas small{color:var(--suave);font-weight:400;white-space:nowrap}
+
+/* ---------- novedades ---------- */
+.novedades{list-style:none;padding:0;margin:0}
+.novedades li{padding:.9rem 0;border-top:1px solid var(--linea);display:flex;gap:1rem;flex-wrap:wrap}
+.novedades li:first-child{border-top:none}
+.novedades time{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);min-width:7rem}
+.novedades span{font-size:.95rem;flex:1;min-width:14rem}
 </style>
 </head>
 <body>
@@ -199,9 +224,60 @@ footer p{margin:0 0 .7rem}
 
 <section>
   <div class="env">
+    <h2 data-i18n="rol-t">Empieza por lo tuyo</h2>
+    <p class="sub" data-i18n="rol-s">Tres puertas distintas, según para qué vienes.</p>
+    <div class="roles">
+      <article class="rol">
+        <h3 data-i18n="al-h">Alumnado</h3>
+        <p data-i18n="al-p">¿Qué libro es el tuyo? Empieza por tu curso.</p>
+        <div class="rol-botones">
+          <a class="btn principal" href="#bach1" data-i18n="al-b1">Voy a 1.º</a>
+          <a class="btn principal" href="#bach2" data-i18n="al-b2">Voy a 2.º</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Sugerencia%20%C2%B7%20Alumnado" data-i18n="al-b3">Avisar de algo</a>
+        </div>
+      </article>
+      <article class="rol">
+        <h3 data-i18n="pr-h">Profesorado</h3>
+        <p data-i18n="pr-p">Para evaluar un manual hace falta el índice, no solo la portada: cada libro abre con el suyo completo en el panel lateral. La licencia libre permite además imprimirlo para el aula y hacer tu propia versión, citando la autoría y compartiendo con la misma libertad.</p>
+        <div class="rol-botones">
+          <a class="btn secundario" href="/filosofia-manual/" data-i18n="pr-b1">Índice · Filosofía (1.º)</a>
+          <a class="btn secundario" href="/hf/" data-i18n="pr-b2">Índice · Historia de la Filosofía (2.º)</a>
+          <a class="btn secundario" href="metodo.html" data-i18n="pr-b3">Cómo están hechos</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Profesorado" data-i18n="pr-b4">Escribir</a>
+        </div>
+      </article>
+      <article class="rol">
+        <h3 data-i18n="ad-h">Administración educativa</h3>
+        <p data-i18n="ad-p">Antes de adoptar algo así hace falta saber quién responde de ello y qué procedimiento hay detrás: registro de decisiones, control de derechos de cita y rastro de autoría, documentados y abiertos a inspección. Y es gratuito, con licencia libre CC BY-SA.</p>
+        <div class="rol-botones">
+          <a class="btn secundario" href="metodo.html" data-i18n="ad-b1">Cómo están hechos</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Administraci%C3%B3n%20educativa" data-i18n="ad-b2">Escribir</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
     <h2 data-i18n="col-t">La colección</h2>
     <p class="sub" data-i18n="col-s">Los de 2.º de Bachillerato están completos y disponibles en las dos lenguas, y el manual de 1.º también, desde este curso. Falta su cuaderno de textos y actividades.</p>
     <div id="coleccion"></div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2 data-i18n="desc-t">Descargar el paquete completo</h2>
+    <p class="sub" data-i18n="desc-s">Los seis PDF publicados hasta hoy, uno por uno, sin pasar por cada portada.</p>
+    <ul class="descargas">
+      <li><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Filosofía · Manual <small>1.º · castellano</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">Filosofia <small>1.º · euskera</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">Historia de la Filosofía <small>2.º · castellano</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf">Filosofiaren Historia <small>2.º · euskera</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">Preparación de la PAU <small>2.º · castellano</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf">USaPerako prestakuntza <small>2.º · euskera</small></a></li>
+    </ul>
   </div>
 </section>
 
@@ -219,6 +295,19 @@ footer p{margin:0 0 .7rem}
         <li><b data-i18n="h3n">CC</b><span data-i18n="h3t">licencia libre BY-SA 4.0: se puede copiar, adaptar y construir encima.</span></li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2 data-i18n="nov-t">Qué ha cambiado</h2>
+    <p class="sub" data-i18n="nov-s">Son libros vivos: se corrigen y se amplían curso a curso. Las últimas novedades.</p>
+    <ul class="novedades">
+      <li><time>31-08-2026</time><span data-i18n="nov-1">El manual de Filosofía de 1.º se publica en las dos lenguas, en web y en PDF.</span></li>
+      <li><time>31-08-2026</time><span data-i18n="nov-2">Las seis portadas estrenan botones directos —leer, PDF, otra lengua, avisar de una errata— y el distintivo de licencia, visibles también desde dentro de cada libro.</span></li>
+      <li><time>28-08-2026</time><span data-i18n="nov-3">Cierra la traducción al euskera de Filosofía de 1.º: 52 piezas, con paridad exacta respecto al castellano.</span></li>
+      <li><time>25-08-2026</time><span data-i18n="nov-4">El aspecto visual se unifica entre esta portada y los seis libros: misma paleta y tipografía.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -339,7 +428,11 @@ const I18N = {
     /* PENDIENTE DE TRADUCCIÓN — no rellenar sin revisión humana.
        Claves: marca, lema, firma, que-t, que-1, que-2, col-t, col-s,
        met-t, met-1, met-2, met-3, h1n, h1t, h2n, h2t, h3n, h3t,
-       pie-1, pie-2, ui-web, ui-pdf, ui-lengua. */
+       pie-1, pie-2, ui-web, ui-pdf, ui-lengua.
+       AÑADIDAS 2026-08-31 (bloques de rol, descarga conjunta, novedades):
+       rol-t, rol-s, al-h, al-p, al-b1, al-b2, al-b3, pr-h, pr-p, pr-b1,
+       pr-b2, pr-b3, pr-b4, ad-h, ad-p, ad-b1, ad-b2, desc-t, desc-s,
+       nov-t, nov-s, nov-1, nov-2, nov-3, nov-4. */
   }
 };
 
@@ -387,6 +480,7 @@ function pintaColeccion() {
   for (const c of CURSOS) {
     const bloque = document.createElement("div");
     bloque.className = "curso";
+    bloque.id = c.id;
     const rot = document.createElement("div");
     rot.className = "curso-rotulo";
     rot.innerHTML = `<b>${t(c.titulo)}</b><span>${t(c.curso)}</span>`;
