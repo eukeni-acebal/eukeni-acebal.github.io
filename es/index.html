@@ -1,61 +1,49 @@
 <!doctype html>
-<html lang="eu">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
-<title>Areté · Batxilergorako filosofia-materialak</title>
+<title>Areté · Materiales de filosofía para Bachillerato</title>
 <meta name="author" content="Eukeni Acebal">
-<meta name="description" content="Areté bilduma: Batxilergorako Filosofia eta Filosofiaren Historiako eskuliburuak eta koadernoak, gaztelaniaz eta euskaraz. Doakoak, webgunean eta PDFn.">
-<meta property="og:title" content="Areté · Batxilergorako filosofia-materialak">
-<meta property="og:description" content="Batxilergorako Filosofia eta Filosofiaren Historiako eskuliburuak eta koadernoak, gaztelaniaz eta euskaraz. CC BY-SA 4.0 lizentzia askea.">
+<meta name="description" content="Colección Areté: manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos y en web y PDF.">
+<meta property="og:title" content="Areté · Materiales de filosofía para Bachillerato">
+<meta property="og:description" content="Manuales y cuadernos de Filosofía e Historia de la Filosofía, en castellano y euskera. Licencia libre CC BY-SA 4.0.">
 <meta property="og:type" content="website">
 
 <!--
   ============================================================
-  HUB DE LA COLECCIÓN ARETÉ — VERSIÓN EUSKERA (POR DEFECTO)
+  HUB DE LA COLECCIÓN ARETÉ — VERSIÓN CASTELLANO
   BORRADOR 2026-09-01, sin revisar ni publicar.
 
-  QUÉ CAMBIA RESPECTO A LA VERSIÓN ANTERIOR (bilingüe, en una sola página):
-   1. Dos páginas separadas, como ya hace el resto de la colección
-      (hf/fh, filosofia-manual/filosofia-testuliburua, pau/usap). Esta es
-      la EU y vive en la raíz (`/`, el sitio por defecto). La ES en `/es/`.
-   2. El enlace a la otra lengua va MUY ARRIBA en la cabecera —
-      «Gaztelaniazko bertsioa»—, con el mismo rótulo que ya usan los
-      seis volúmenes para su propio cruce de idioma.
-   3. Cada página muestra SOLO los libros de su propia lengua (decisión
-      de Eukeni, 2026-09-01: «en la versión eu no pinta nada las
-      versiones en castellano; si alguien lo quiere en otro idioma, que
-      cambie de idioma al principio»). El cruce de idioma se resuelve
-      una vez, en la cabecera — no libro a libro dentro de «La colección»
-      ni en «Descargar el paquete completo». La única excepción es
-      «Filosofia · Koadernoa», que no existe todavía en ninguna lengua:
-      es un único elemento pendiente, no una duplicación por idioma.
-   4. El filtro por rol (alumnado/profesorado/administración) no es un
-      enlace ancla a un tramo de esta misma página: es un estado
-      (data-rol-seccion + JS) que oculta/enseña secciones enteras.
-      Elegir «Ikasleak» simplifica la página a lo esencial (qué es
-      esto + la colección); elegir «Irakasleak» o «Hezkuntza-
-      administrazioa» no oculta nada, porque ya querían verlo todo
-      (método, descargas conjuntas, novedades). Se recuerda con
-      localStorage («arete-rol»), igual que el tema de color.
-   5. «Nola egin ditudan» (metodo.html) está traducido íntegro al
-      euskera — pedido explícito de Eukeni, 2026-09-01. Ya no hace
-      falta la nota «(gaztelaniaz)» junto al enlace.
+  Vive en `/es/` porque el sitio por defecto (`/`, arete/index.html) pasa
+  a ser la versión euskera: no tenía sentido abrir en castellano y enlazar
+  después a libros en euskera. Es la misma página que antes vivía en la
+  raíz, con estos cambios:
+   1. Enlace a «Euskarazko bertsioa» muy arriba en la cabecera.
+   2. Los enlaces a «metodo.html» pasan a ser relativos otra vez («metodo.html»,
+      no «/metodo.html»), porque ahora vive junto a este fichero en /es/
+      (ver más abajo: metodo.html se ha traducido y la versión castellana
+      se ha movido aquí).
+   3. Esta página muestra SOLO los libros en castellano (decisión de
+      Eukeni, 2026-09-01: «en la versión eu no pinta nada las versiones
+      en castellano; si alguien lo quiere en otro idioma, que cambie de
+      idioma al principio»). El cruce de idioma se resuelve una vez, en
+      la cabecera — no libro a libro. La única excepción es «Filosofía ·
+      Cuaderno», que no existe todavía en ninguna lengua: es un único
+      elemento pendiente, no una duplicación por idioma.
+   4. El filtro por rol condiciona qué secciones se ven (ver el mismo
+      mecanismo documentado en la versión euskera, arete/index.html).
+   Se ha retirado la infraestructura I18N/data-i18n/MOSTRAR_SELECTOR:
+   ya no hace falta, porque cada lengua es ahora un fichero aparte,
+   como en el resto de la colección (hf/fh, pau/usap, filosofia-manual/
+   filosofia-testuliburua).
 
-  TERMINOLOGÍA REUTILIZADA (no inventada esta sesión): «PDFa deskargatu»,
-  «Idatzidazu», «Egilea», «Bilatu», «Gaztelaniazko bertsioa» / «Euskarazko
-  bertsioa», «Eskuliburua», «Koadernoa», «irakurgaiak», el párrafo de
-  licencia CC BY-SA — todo tomado tal cual de fh/index.html, hf/index.html,
-  usap/index.html y filosofia-testuliburua/index.html, que son páginas ya
-  traducidas y revisadas por Eukeni. El texto nuevo (roles, secciones de
-  este hub, metodo.html) es traducción de esta sesión, SIN revisión humana
-  todavía: exactamente el paso que falta antes de publicar (D6, D7).
-
-  PENDIENTE DE VERIFICAR: la cifra de «Las cifras» sobre qué está completo
-  en euskera se ha actualizado (antes decía que solo 2.º lo estaba; el
-  propio comentario D234 de la versión anterior de este fichero dice que
-  1.º se publicó en las dos lenguas el 31-08).
+  Nota de la sesión: en «Las cifras» se ha actualizado la frase sobre el
+  euskera («2.º de Bachillerato está completo» → «están completos los
+  manuales de los dos cursos, desde el 31 de agosto»), porque el propio
+  comentario D234 de la versión anterior dice que el manual de 1.º se
+  publicó en las dos lenguas ese día. Verificar antes de publicar.
   ============================================================
 -->
 
@@ -227,15 +215,15 @@ footer p{margin:0 0 .7rem}
 <header>
   <div class="env">
     <h1 class="marca">Aret<span class="tilde">é</span></h1>
-    <p class="lema">Batxilergorako filosofia-eskuliburuak eta koadernoak, gaztelaniaz zein euskaraz. Doakoak eta lizentzia askekoak, webgunean eta paperean.</p>
+    <p class="lema">Manuales y cuadernos de filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos, en la web y en papel.</p>
     <p class="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
-    <nav class="otra-lengua" aria-label="Hizkuntza">
-      <a href="/es/">Gaztelaniazko bertsioa →</a>
+    <nav class="otra-lengua" aria-label="Idioma">
+      <a href="/">Euskarazko bertsioa →</a>
     </nav>
-    <nav class="tema" id="tema" aria-label="Kolore-gaia">
+    <nav class="tema" id="tema" aria-label="Tema de color">
       <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
-      <button type="button" data-tema="claro" aria-pressed="false">Argia</button>
-      <button type="button" data-tema="oscuro" aria-pressed="false">Iluna</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
     </nav>
   </div>
 </header>
@@ -244,53 +232,53 @@ footer p{margin:0 0 .7rem}
 
 <section>
   <div class="env">
-    <h2>Zer da hau</h2>
+    <h2>Qué es esto</h2>
     <div class="metodo">
-      <p>Areté gela jakin baterako idatzitako filosofia-liburuen bilduma da: Barakaldoko institutu publiko bateko gela batentzat. Ez du inork argitaratzen. Ez dute ezer balio. Batxilergoko bi irakasgaien curriculum ofizial osoa jasotzen dute, eta hemen ikasten diren bi hizkuntzetan daude.</p>
-      <p>Liburuki bakoitza bi modutan argitaratzen dut aldi berean: edozein pantailatan irakurtzeko <strong>web-edizio</strong> bat, atalez atal estekatua, eta inprimatzeko eta koadernatzeko maketatutako <strong>PDF</strong> bat. Testu bera da. Eta liburu biziak dira: ikasturtez ikasturte zuzentzen eta osatzen ditut, sei urtean behingo berrargitalpen baten zain egon beharrean.</p>
+      <p>Areté es una colección de libros de texto de filosofía escritos para un aula concreta: la de un instituto público de Barakaldo. No los edita nadie. No cuestan nada. Cubren el currículo oficial completo de las dos asignaturas de Bachillerato y existen en las dos lenguas en que se estudia aquí.</p>
+      <p>Publico cada volumen de dos maneras a la vez: una <strong>edición web</strong> que se lee en cualquier pantalla y enlaza sección por sección, y un <strong>PDF</strong> maquetado para imprimir y encuadernar. Es el mismo texto. Y son libros vivos: los corrijo y los amplío curso a curso, en lugar de esperar a una reedición cada seis años.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="env">
-    <h2>Hasi zeurearekin</h2>
-    <p class="sub">Hiru ate desberdin, zertarako etorri zaren arabera.</p>
+    <h2>Empieza por lo tuyo</h2>
+    <p class="sub">Tres puertas distintas, según para qué vienes.</p>
 
-    <nav class="rol-iragazkia" id="rol-iragazkia" aria-label="Ikusten dena iragazi">
-      <span class="etik">Erakutsi:</span>
-      <button type="button" data-rol="guztia" aria-pressed="true">Guztia</button>
-      <button type="button" data-rol="ikasleak" aria-pressed="false">Ikasleak</button>
-      <button type="button" data-rol="irakasleak" aria-pressed="false">Irakasleak</button>
-      <button type="button" data-rol="administrazioa" aria-pressed="false">Hezkuntza-administrazioa</button>
+    <nav class="rol-iragazkia" id="rol-iragazkia" aria-label="Filtrar lo que se ve">
+      <span class="etik">Mostrar:</span>
+      <button type="button" data-rol="guztia" aria-pressed="true">Todo</button>
+      <button type="button" data-rol="ikasleak" aria-pressed="false">Alumnado</button>
+      <button type="button" data-rol="irakasleak" aria-pressed="false">Profesorado</button>
+      <button type="button" data-rol="administrazioa" aria-pressed="false">Administración educativa</button>
     </nav>
 
     <div class="roles">
       <article class="rol" data-rol-txartela="ikasleak">
-        <h3>Ikasleak</h3>
-        <p>Zein da zure liburua? Hasi zure ikasturtetik.</p>
+        <h3>Alumnado</h3>
+        <p>¿Qué libro es el tuyo? Empieza por tu curso.</p>
         <div class="rol-botones">
-          <a class="btn principal" href="#bach1" data-aukeratu-rol="ikasleak">1. Batxilergora noa</a>
-          <a class="btn principal" href="#bach2" data-aukeratu-rol="ikasleak">2. Batxilergora noa</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Zerbaiten%20berri%20%C2%B7%20Ikasleak">Zerbaiten berri eman</a>
+          <a class="btn principal" href="#bach1" data-aukeratu-rol="ikasleak">Voy a 1.º</a>
+          <a class="btn principal" href="#bach2" data-aukeratu-rol="ikasleak">Voy a 2.º</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Sugerencia%20%C2%B7%20Alumnado">Avisar de algo</a>
         </div>
       </article>
       <article class="rol" data-rol-txartela="irakasleak">
-        <h3>Irakasleak</h3>
-        <p>Eskuliburu bat ebaluatzeko aurkibidea behar da, ez azala bakarrik: liburu bakoitzak berea irekitzen du osorik alboko panelean. Lizentzia askeak, gainera, gelarako inprimatzea eta zeure bertsioa egitea baimentzen du, egiletza aipatuz eta askatasun berarekin partekatuz.</p>
+        <h3>Profesorado</h3>
+        <p>Para evaluar un manual hace falta el índice, no solo la portada: cada libro abre con el suyo completo en el panel lateral. La licencia libre permite además imprimirlo para el aula y hacer tu propia versión, citando la autoría y compartiendo con la misma libertad.</p>
         <div class="rol-botones">
-          <a class="btn secundario" href="/filosofia-testuliburua/" data-aukeratu-rol="irakasleak">Aurkibidea · Filosofia (1.)</a>
-          <a class="btn secundario" href="/fh/" data-aukeratu-rol="irakasleak">Aurkibidea · Filosofiaren Historia (2.)</a>
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="irakasleak">Nola egin ditudan</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Kontsulta%20%C2%B7%20Irakasleak" data-aukeratu-rol="irakasleak">Idatzidazu</a>
+          <a class="btn secundario" href="/filosofia-manual/" data-aukeratu-rol="irakasleak">Índice · Filosofía (1.º)</a>
+          <a class="btn secundario" href="/hf/" data-aukeratu-rol="irakasleak">Índice · Historia de la Filosofía (2.º)</a>
+          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="irakasleak">Cómo los he hecho</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Profesorado" data-aukeratu-rol="irakasleak">Escríbeme</a>
         </div>
       </article>
       <article class="rol" data-rol-txartela="administrazioa">
-        <h3>Hezkuntza-administrazioa</h3>
-        <p>Horrelako zerbait onartu aurretik jakin behar da nork erantzuten duen eta zer prozedura dagoen atzean: erabakien erregistro bat, aipamen-eskubideen kontrol bat eta egiletza-arrasto bat daramat, dokumentatuak eta ikuskaritzarako irekiak. Eta doakoa da, CC BY-SA lizentzia askearekin.</p>
+        <h3>Administración educativa</h3>
+        <p>Antes de adoptar algo así hace falta saber quién responde de ello y qué procedimiento hay detrás: llevo un registro de decisiones, un control de derechos de cita y un rastro de autoría, documentados y abiertos a inspección. Y es gratuito, con licencia libre CC BY-SA.</p>
         <div class="rol-botones">
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="administrazioa">Nola egin ditudan</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Kontsulta%20%C2%B7%20Hezkuntza-administrazioa" data-aukeratu-rol="administrazioa">Idatzidazu</a>
+          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="administrazioa">Cómo los he hecho</a>
+          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Administraci%C3%B3n%20educativa" data-aukeratu-rol="administrazioa">Escríbeme</a>
         </div>
       </article>
     </div>
@@ -299,35 +287,35 @@ footer p{margin:0 0 .7rem}
 
 <section>
   <div class="env">
-    <h2>Bilduma</h2>
-    <p class="sub">2. Batxilergokoak osorik daude eta bi hizkuntzetan eskuragarri, eta 1.eko eskuliburua ere bai, ikasturte honetatik. Falta da haren testu eta jardueren koadernoa.</p>
+    <h2>La colección</h2>
+    <p class="sub">Los de 2.º de Bachillerato están completos y disponibles en las dos lenguas, y el manual de 1.º también, desde este curso. Falta su cuaderno de textos y actividades.</p>
     <div id="coleccion"></div>
   </div>
 </section>
 
 <section data-rol-seccion="irakasleak administrazioa">
   <div class="env">
-    <h2>Deskargatu pakete osoa</h2>
-    <p class="sub">Gaur arte argitaratu ditudan sei PDFak, banan-banan, azal bakoitzetik pasatu gabe.</p>
+    <h2>Descargar el paquete completo</h2>
+    <p class="sub">Los seis PDF que he publicado hasta hoy, uno por uno, sin pasar por cada portada.</p>
     <ul class="descargas">
-      <li><a href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">Filosofia <small>1. · euskara</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf">Filosofiaren Historia <small>2. · euskara</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf">USaPerako prestakuntza <small>2. · euskara</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Filosofía · Manual <small>1.º · castellano</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">Historia de la Filosofía <small>2.º · castellano</small></a></li>
+      <li><a href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">Preparación de la PAU <small>2.º · castellano</small></a></li>
     </ul>
   </div>
 </section>
 
 <section data-rol-seccion="irakasleak administrazioa">
   <div class="env">
-    <h2>Nola egin ditudan</h2>
+    <h2>Cómo los he hecho</h2>
     <div class="metodo">
-      <p>Sarreran esan behar da, ez letra txikian: <strong>liburu hauen zirriborroak ez ditut eskuz idazten.</strong> Hizkuntza-eredu batek egin ditu, Claude-k (Anthropic), nire jarraibideetatik abiatuta eta nire edizioaren azpian. Kontzepzioa, egitura, zer sartzen den eta zer geratzen den kanpoan erabakitzea, curriculumera egokitzea, terminologia eta azken berrikuspena nireak dira, eta nireak dira liburuotan diodan guztiaren erantzukizuna.</p>
-      <p>Egia delako diot, eta prozedura dokumentatuta dagoelako: erabakien erregistro zenbakidun bat dago, curriculumaren estaldura-mapa atalez atal, aipamen-eskubideen kontrol bat testuz testu, eta egiletza-arrasto bat zatiz zati, zein eskuk idatzi duen jakiteko aukera ematen duena. Hori ez da ohikoa liburu batean, eta uste dut ohikoa izan beharko lukeela.</p>
-      <p><strong>Eta ez dut orririk hutsezintzat ematen.</strong> Akats bat, gaizki egotzitako zerbait edo hobeto azal daitekeen zerbait aurkitzen baduzu, idatzidazu non dagoen: abisu bakoitzak hurrengo edizioa hobetzen du.</p>
-      <p><a href="metodo.html"><strong>Prozedura osoa, urratsez urrats →</strong></a> Neurtutako zenbakiekin eta, batez ere, metodo honek konpontzen ez duenarekin.</p>
+      <p>Conviene decirlo en la puerta y no en la letra pequeña: <strong>no escribo a mano los borradores de estos libros.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. La concepción, la estructura, la selección de qué entra y qué se queda fuera, el ajuste al currículo, la terminología y la revisión final son mías, y mía es la responsabilidad de cuanto afirmo en ellos.</p>
+      <p>Lo digo porque es verdad y porque el procedimiento está documentado: hay un registro de decisiones numerado, un mapa de cobertura del currículo apartado por apartado, un control de derechos de cita texto a texto y un rastro de autoría pieza a pieza que permite saber qué mano redactó cada tramo. Nada de eso es habitual en un libro de texto, y creo que debería serlo.</p>
+      <p><strong>Y no doy ninguna página por infalible.</strong> Si encuentras una errata, algo mal atribuido o algo que pueda explicarse mejor, escríbeme diciéndome dónde está: cada aviso mejora la edición siguiente.</p>
+      <p><a href="metodo.html"><strong>El procedimiento completo, paso a paso →</strong></a> Con las cifras medidas y, sobre todo, con lo que este método <em>no</em> resuelve.</p>
       <ul class="hechos">
-        <li><b>272.000</b><span>gorputz-hitz gaztelaniaz, Batxilergoko bi irakasgaien curriculum ofizial osoarekin. Euskaraz, 2.eko bi liburukiak osorik daude eta, abuztuaren 31tik, baita 1.eko eskuliburua ere.</span></li>
-        <li><b>CC</b><span>lizentzia askea, BY-SA 4.0: kopiatu, egokitu eta gainean eraiki daiteke.</span></li>
+        <li><b>272.000</b><span>palabras de cuerpo en castellano, con el currículo oficial completo de las dos asignaturas. En euskera, están completos los dos manuales de 2.º y, desde el 31 de agosto, también el de 1.º.</span></li>
+        <li><b>CC</b><span>licencia libre BY-SA 4.0: se puede copiar, adaptar y construir encima.</span></li>
       </ul>
     </div>
   </div>
@@ -335,13 +323,13 @@ footer p{margin:0 0 .7rem}
 
 <section data-rol-seccion="irakasleak administrazioa">
   <div class="env">
-    <h2>Zer aldatu den</h2>
-    <p class="sub">Liburu biziak dira: ikasturtez ikasturte zuzentzen eta osatzen ditut. Azken berriak.</p>
+    <h2>Qué ha cambiado</h2>
+    <p class="sub">Son libros vivos: los corrijo y los amplío curso a curso. Las últimas novedades.</p>
     <ul class="novedades">
-      <li><time>31-08-2026</time><span>Filosofia 1.eko eskuliburua argitaratzen dut bi hizkuntzetan, webgunean eta PDFn.</span></li>
-      <li><time>31-08-2026</time><span>Sei azaletan botoi zuzenak jartzen ditut —irakurri, PDFa, beste hizkuntza, akatsaren berri eman— eta lizentzia-ikurra, liburu bakoitzaren barrutik ere ikusgai.</span></li>
-      <li><time>28-08-2026</time><span>Filosofia 1.eko euskarazko itzulpena ixten dut: 52 pieza, gaztelaniarekiko paritate zehatzarekin.</span></li>
-      <li><time>25-08-2026</time><span>Azal honen eta sei liburuen itxura bisuala bateratzen dut: paleta eta tipografia bera.</span></li>
+      <li><time>31-08-2026</time><span>Publico el manual de Filosofía de 1.º en las dos lenguas, en web y en PDF.</span></li>
+      <li><time>31-08-2026</time><span>Doy a las seis portadas botones directos —leer, PDF, otra lengua, avisar de una errata— y el distintivo de licencia, visibles también desde dentro de cada libro.</span></li>
+      <li><time>28-08-2026</time><span>Cierro la traducción al euskera de Filosofía de 1.º: 52 piezas, con paridad exacta respecto al castellano.</span></li>
+      <li><time>25-08-2026</time><span>Unifico el aspecto visual entre esta portada y los seis libros: misma paleta y tipografía.</span></li>
     </ul>
   </div>
 </section>
@@ -350,7 +338,7 @@ footer p{margin:0 0 .7rem}
 
 <footer>
   <div class="env">
-    <p><span class="cc">Creative Commons BY-SA 4.0</span> — liburu hauek Creative Commons BY-SA 4.0 lizentziapean argitaratzen dira: kopiatu, inprimatu, klasean banatu eta zeure bertsioak egin ditzakezu, bi baldintzarekin —nondik datorren aipatzea eta egiten duzuna askatasun berarekin argitaratzea—. Barruan aipatzen diren filosofoen testuak beren egile eta itzultzaileenak dira, eta lizentzia honek ez ditu estaltzen.</p>
+    <p><span class="cc">Creative Commons BY-SA 4.0</span> — puedes usar, copiar, compartir y adaptar estos libros, incluso para construir materiales nuevos, reconociendo la autoría y compartiendo lo que hagas con la misma libertad. Los textos de filósofos citados en ellos pertenecen a sus autores y traductores y no están cubiertos por esta licencia.</p>
     <p>Eukeni Acebal · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
   </div>
 </footer>
@@ -359,64 +347,64 @@ footer p{margin:0 0 .7rem}
 "use strict";
 
 /* ============================================================
-   1 · LOS VOLÚMENES — versión euskera. Solo ediciones en euskera
-   (decisión de Eukeni, 2026-09-01: cada hub muestra solo su lengua;
-   el cruce de idioma se resuelve una vez, en la cabecera). El único
-   elemento sin lengua fijada es «Filosofia · Koadernoa», pendiente
-   en las dos. Si cambia un enlace o un PDF, cambiar también en
-   /es/index.html.
+   1 · LOS VOLÚMENES — versión castellano. Solo ediciones en
+   castellano (decisión de Eukeni, 2026-09-01: cada hub muestra solo
+   su lengua; el cruce de idioma se resuelve una vez, en la
+   cabecera). El único elemento sin lengua fijada es «Filosofía ·
+   Cuaderno», pendiente en las dos. Si cambia un enlace o un PDF,
+   cambiar también en /index.html (versión euskera).
    ============================================================ */
 const CURSOS = [
   {
     id: "bach2",
-    titulo: "Filosofiaren Historia",
-    curso:  "2. Batxilergoa",
+    titulo: "Historia de la Filosofía",
+    curso:  "2.º de Bachillerato",
     volumenes: [
       {
-        titulo: "Filosofiaren Historia",
-        tipo:   "Eskuliburua",
-        lengua: "Euskara",
-        nota:   "Mendebaldeko pentsamendua hastapenetatik gaur egunera arte, bost zatitan eta hogeita bi gaitan.",
-        web: "/fh/",
-        pdf: "https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf"
+        titulo: "Historia de la Filosofía",
+        tipo:   "Manual",
+        lengua: "Castellano",
+        nota:   "El pensamiento occidental desde sus inicios hasta hoy, en cinco partes y veintidós temas.",
+        web: "/hf/",
+        pdf: "https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf"
       },
       {
-        titulo: "USaPerako prestakuntza",
-        tipo:   "Koadernoa",
-        lengua: "Euskara",
-        nota:   "Frogaren metodoa, bost irakurgaiak barrutik eta lau azterketa ebatzi eta iruzkindu.",
-        web: "/usap/",
-        pdf: "https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf"
+        titulo: "Preparación de la PAU",
+        tipo:   "Cuaderno",
+        lengua: "Castellano",
+        nota:   "El método de cada ejercicio, las cinco lecturas por dentro y los cuatro exámenes resueltos y comentados.",
+        web: "/pau/",
+        pdf: "https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf"
       }
     ]
   },
   {
     id: "bach1",
-    titulo: "Filosofia",
-    curso:  "1. Batxilergoa",
+    titulo: "Filosofía",
+    curso:  "1.º de Bachillerato",
     volumenes: [
       {
-        titulo: "Filosofia",
-        tipo:   "Eskuliburua",
-        lengua: "Euskara",
-        nota:   "Zazpi unitate eta hogeita hemezortzi gai: filosofia zer den galdetzetik estetikaraino, antropologia, epistemologia, etika eta filosofia politikotik pasatuz.",
-        estado: "Argitaratua",
-        web: "/filosofia-testuliburua/",
-        pdf: "https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf"
+        titulo: "Filosofía",
+        tipo:   "Manual",
+        lengua: "Castellano",
+        nota:   "Siete unidades y treinta y ocho temas: de qué es la filosofía a la estética, pasando por antropología, epistemología, ética y filosofía política.",
+        estado: "Publicado",
+        web: "/filosofia-manual/",
+        pdf: "https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf"
       },
       {
-        titulo: "Filosofia · Koadernoa",
-        tipo:   "Koadernoa",
-        lengua: "Gaztelania eta euskara",
-        nota:   "Geleko lanerako testuak, dizertazioa eta jarduerak.",
-        estado: "Prestatzen",
+        titulo: "Filosofía · Cuaderno",
+        tipo:   "Cuaderno",
+        lengua: "Castellano y euskera",
+        nota:   "Textos, disertación y actividades para el trabajo de aula.",
+        estado: "En preparación",
         web: null, pdf: null
       }
     ]
   }
 ];
 
-const UI = { web: "Webgunean irakurri", pdf: "PDFa deskargatu" };
+const UI = { web: "Leer en la web", pdf: "Descargar PDF" };
 
 /* ============================================================
    2 · PINTADO DE LA COLECCIÓN
@@ -466,7 +454,7 @@ function pintaColeccion() {
 
 /* ============================================================
    3 · FILTRO POR ROL — condiciona qué secciones se ven, no
-   navega a un tramo de la página. «guztia» (por defecto) enseña
+   navega a un tramo de la página. «Todo» (por defecto) enseña
    todo, como antes. Elegir un rol concreto oculta las secciones
    marcadas con data-rol-seccion que no lo incluyan; las secciones
    sin ese atributo (cabecera, qué es esto, la colección, pie)
@@ -492,7 +480,7 @@ function montaRol() {
   document.querySelectorAll("#rol-iragazkia button").forEach((b) => {
     b.addEventListener("click", () => aplicaRol(b.dataset.rol));
   });
-  // Los botones de curso en la tarjeta «Ikasleak» también fijan el rol,
+  // Los botones de curso en la tarjeta «Alumnado» también fijan el rol,
   // además de llevar a #bach1 / #bach2 (comportamiento por defecto del ancla).
   document.querySelectorAll("[data-aukeratu-rol]").forEach((el) => {
     el.addEventListener("click", () => aplicaRol(el.dataset.aukeratuRol));

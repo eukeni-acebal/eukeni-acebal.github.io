@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
+<title>Cómo he hecho estos libros · Areté</title>
+<meta name="author" content="Eukeni Acebal">
+<meta name="description" content="El procedimiento completo con que se han escrito los manuales de la colección Areté: qué hace el autor, qué hace el modelo de lenguaje, cómo se verifica y qué no resuelve este método.">
+<meta property="og:title" content="Cómo he hecho estos libros · Areté">
+<meta property="og:description" content="El procedimiento completo, incluido lo que no funciona.">
+<meta property="og:type" content="article">
+
+<!--
+  ============================================================
+  PÁGINA DE MÉTODO · VERSIÓN CASTELLANO · vive en /es/metodo.html
+  BORRADOR 2026-09-01, sin revisar ni publicar.
+
+  Hasta el 31-08 este fichero vivía en la raíz (arete/metodo.html). Se ha
+  movido a /es/ porque la raíz pasa a servir la versión euskera del hub
+  (D6/D7: EU por defecto, cruce de idioma resuelto una vez en la cabecera).
+  Su gemela en euskera es arete/metodo.html (traducción de esta sesión,
+  pedida explícitamente por Eukeni el 2026-09-01 — hasta entonces el
+  euskera de esta página no existía). Los dos enlaces «volver» de este
+  fichero (cabecera y pie) apuntan a «/es/» porque el contenido es
+  exclusivamente castellano.
+
+  Fichero autocontenido a propósito: además de servirse en la web, se manda
+  suelto por correo a quien pregunta cómo está hecho esto. Por eso duplica el
+  CSS de index.html en vez de compartir hoja: tiene que abrir sola.
+
+  CIFRAS: medidas el 2026-08-23, no estimadas.
+    · bin/mide-autoria.py  → 60,0 % de composición, 80,8 % de supervivencia
+    · recuento de cuerpo   → F1 138.440 · HF 96.091 · PAU 37.805 (castellano)
+    · auditoría D146       → 13 citas en bloque revisadas, 5 con defecto
+  Si se rehace alguna, rehacer también el bloque «Las cifras».
+  RETIRADAS 2026-08-31 (Eukeni, D241): el 60,0 % de composición y el 80,8 % de
+  supervivencia ya NO se muestran en «Las cifras» — sobraban y no había certeza de
+  que siguieran actualizadas. El resto de la medición de mide-autoria.py sigue
+  siendo válida si se necesita en otro sitio; solo se retira su presencia aquí.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap">
+<style>
+:root{
+  /* Tokens del tema Areté (quarto-theme/custom.scss): el hub y los seis
+     volúmenes comparten paleta y tipografía, para que pasar de la portada
+     a un libro no cambie el suelo bajo los pies. */
+  --papel:#f6f1e4; --tinta:#2b241a; --suave:#6e6353; --linea:#ddd3bd;
+  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.07);
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-tema="claro"]){
+    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
+    --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+  }
+}
+:root[data-tema="oscuro"]{
+  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
+  --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);
+     font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.env{max-width:44rem;margin:0 auto;padding:0 1.5rem}
+a{color:var(--acento)}
+p{margin:0 0 1.15rem}
+
+.volver{display:inline-block;margin:2.2rem 0 0;font-size:.85rem;letter-spacing:.08em;
+        text-transform:uppercase;color:var(--suave);text-decoration:none}
+.volver:hover{color:var(--acento)}
+
+header{padding:1rem 0 2.8rem;border-bottom:1px solid var(--linea)}
+h1{font-family:var(--serif);font-size:clamp(2.1rem,6.5vw,3.1rem);line-height:1.1;
+   letter-spacing:-.02em;font-weight:600;margin:1.8rem 0 .8rem}
+.entradilla{font-family:var(--serif);font-size:1.18rem;font-style:italic;color:var(--suave);margin:0}
+
+section{padding:2.8rem 0}
+section+section{border-top:1px solid var(--linea)}
+h2{font-family:var(--serif);font-size:1.65rem;font-weight:600;letter-spacing:-.01em;margin:0 0 1.2rem}
+h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:1.8rem 0 .5rem}
+
+.reparto{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0 0}
+.reparto>div{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;padding:1.2rem 1.3rem}
+.reparto h4{font-family:var(--serif);font-size:1.05rem;margin:0 0 .7rem;color:var(--acento)}
+.reparto ul{margin:0;padding-left:1.1rem;font-size:.95rem}
+.reparto li{margin:0 0 .4rem}
+
+.pasos{counter-reset:paso;list-style:none;padding:0;margin:0}
+.pasos>li{counter-increment:paso;position:relative;padding:0 0 1.6rem 3.2rem;
+          border-left:1px solid var(--linea);margin-left:.9rem}
+.pasos>li:last-child{border-left-color:transparent;padding-bottom:0}
+.pasos>li::before{content:counter(paso);position:absolute;left:-.9rem;top:0;
+  width:1.8rem;height:1.8rem;border-radius:50%;background:var(--acento);color:var(--papel);
+  display:grid;place-items:center;font-size:.85rem;font-weight:600;font-family:var(--serif)}
+.pasos b{display:block;font-family:var(--serif);font-size:1.1rem;font-weight:600;margin:.1rem 0 .35rem}
+.pasos p{font-size:.97rem;margin:0 0 .6rem}
+
+.cifras{list-style:none;padding:0;margin:1.4rem 0 0}
+.cifras li{display:flex;gap:1.2rem;padding:.85rem 0;border-top:1px solid var(--linea);align-items:baseline}
+.cifras b{font-family:var(--serif);font-size:1.6rem;color:var(--acento);min-width:7rem;font-weight:600}
+.cifras span{font-size:.96rem;color:var(--suave)}
+
+.aviso{background:var(--acento-flojo);border-left:3px solid var(--acento);
+       border-radius:0 .5rem .5rem 0;padding:1.1rem 1.3rem;margin:1.5rem 0}
+.aviso p:last-child{margin-bottom:0}
+
+.tema{display:flex;gap:.4rem;margin:1.4rem 0 0}
+.tema button{
+  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
+  background:none;border:1px solid var(--linea);color:var(--suave);
+  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
+}
+.tema button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+
+footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;color:var(--suave)}
+@media (max-width:34rem){
+  body{font-size:16px}
+  .reparto{grid-template-columns:1fr}
+  .cifras li{flex-direction:column;gap:.1rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="env">
+    <a class="volver" href="/es/">← Areté</a>
+    <h1>Cómo he hecho estos libros</h1>
+    <p class="entradilla">Incluido lo que este método no resuelve, que es la parte que suele faltar.</p>
+    <nav class="tema" id="tema" aria-label="Tema de color">
+      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="env">
+    <p>Hay una pregunta que casi ningún libro de texto contesta: <strong>¿quién escribió esto, y cómo sabemos que lo que dice es verdad?</strong> No es una pregunta retórica. Un manual comercial lo firman varios autores contratados, lo reescribe un equipo editorial que no aparece en ninguna página, y no hay forma de saber qué apartado escribió quién ni qué se comprobó antes de imprimirlo. No es negligencia: es cómo se producen.</p>
+    <p>Estos libros contestan esa pregunta. Esta página es la respuesta larga, y está aquí porque creo que debería ser lo normal, no una rareza.</p>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>El reparto: quién hace qué</h2>
+    <p><strong>Los borradores de estos libros no están escritos a mano.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. Lo digo en la primera página de cada volumen y lo repito aquí porque es el dato que cambia cómo hay que leer todo lo demás.</p>
+    <div class="reparto">
+      <div>
+        <h4>Yo</h4>
+        <ul>
+          <li>Concebir el libro y su arquitectura</li>
+          <li>Decidir qué entra y qué se queda fuera</li>
+          <li>Ajustarlo al currículo oficial</li>
+          <li>Fijar la terminología filosófica</li>
+          <li>Elegir los textos y las citas</li>
+          <li>Editar y reescribir cada tramo</li>
+          <li>Verificar lo que se afirma</li>
+          <li>Responder de todo ello</li>
+        </ul>
+      </div>
+      <div>
+        <h4>El modelo</h4>
+        <ul>
+          <li>Redactar los borradores que le encargo</li>
+          <li>Sostener una voz uniforme a lo largo de 270.000 palabras</li>
+          <li>Proponer estructuras y detectar huecos</li>
+          <li>Traducir del castellano al euskera</li>
+          <li>Señalarme contradicciones y repeticiones</li>
+          <li>Revisar críticamente mis propias decisiones</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem">Dicho en corto: <strong>el criterio es mío y la redacción es suya.</strong> Y la responsabilidad, entera, es mía: un modelo no puede firmar una fe de erratas ni comparecer si alguien pregunta de dónde sale una afirmación.</p>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>El procedimiento</h2>
+    <ol class="pasos">
+      <li>
+        <b>Una sola fuente, en texto plano</b>
+        <p>Todo el proyecto vive en un repositorio de control de versiones, escrito en Markdown. Nada se duplica: si un dato aparece en dos sitios, uno de los dos enlaza al otro. De esa fuente única salen después el PDF y la web, que por construcción no pueden decir cosas distintas.</p>
+      </li>
+      <li>
+        <b>Un registro de decisiones, numerado</b>
+        <p>Cada decisión editorial de fondo —una convención tipográfica, dónde va un tema, si una traducción es admisible, qué se poda— se escribe con su número, su fecha y <em>su razón</em>. Van por la 154. Sirve para lo aburrido y decisivo: que dentro de un año nadie, yo incluido, deshaga por olvido algo que se decidió por un motivo.</p>
+      </li>
+      <li>
+        <b>El currículo, mapeado apartado por apartado</b>
+        <p>Existe un documento que cruza cada apartado del currículo oficial con la sección del libro que lo cubre, y señala en rojo lo que no está cubierto. No es una declaración de intenciones: es una tabla que se puede auditar. Es lo que permite afirmar que el currículo está completo sin que sea una forma de hablar.</p>
+      </li>
+      <li>
+        <b>La redacción, por capas y con pases</b>
+        <p>Ningún tema se escribe de una vez. Se levanta la estructura, se redacta, y después pasa por revisiones sucesivas con un objetivo cada una: nivel de exigencia, densidad, coherencia con los temas vecinos, voz. Cada pase deja escrito en la cabecera del fichero qué se le hizo y por qué.</p>
+      </li>
+      <li>
+        <b>Una revisión adversarial</b>
+        <p>Los tramos importantes se someten a una lectura hecha con la instrucción explícita de buscar errores y objeciones, no de aprobar. Funciona: en un solo pase encontró once fallos que la lectura normal había dejado pasar.</p>
+      </li>
+      <li>
+        <b>Verificación documental de las citas</b>
+        <p>Aparte de leer el texto, se abre cada cita, cada referencia y cada fecha y se comprueba contra la fuente. Es trabajo mecánico y es imprescindible, porque —como se explica más abajo— leyendo no se detectan estos fallos. Una auditoría de trece citas en bloque encontró cinco con defecto.</p>
+      </li>
+      <li>
+        <b>Derechos de cita, caso por caso</b>
+        <p>Los textos de filósofos pertenecen a sus autores y traductores. Cada uno lleva su ficha —autor, obra, traductor, edición— y consta bajo qué amparo legal se reproduce. Cuando la traducción es mía, lo digo. La licencia libre del libro cubre lo que yo escribo; no alcanza a esos fragmentos, y así queda declarado.</p>
+      </li>
+      <li>
+        <b>Rastro de autoría, pieza a pieza</b>
+        <p>La cabecera de cada tema registra qué mano redactó cada tramo: <code>redacción EA</code>, o <code>base EA · redacción Claude</code> con su fecha. Es lo que permite contestar con precisión, y no con una impresión, cuánto del libro escribió cada uno.</p>
+      </li>
+      <li>
+        <b>Las dos lenguas, en un orden estricto</b>
+        <p>El castellano es la fuente canónica y se cierra primero. El euskera se obtiene por traducción y <strong>pasa siempre por revisión humana</strong>: no se redacta terminología filosófica en euskera de forma independiente. Traducir un texto sin cerrar duplica los errores y obliga a rehacer lo ya revisado.</p>
+      </li>
+      <li>
+        <b>Un texto, dos formatos</b>
+        <p>Del mismo Markdown salen el PDF, maquetado con Typst para imprimir y encuadernar, y la edición web, generada con Quarto, donde las remisiones entre secciones son enlaces. No hay dos versiones que mantener sincronizadas: hay una, y dos salidas.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>Las cifras</h2>
+    <p>Medidas, no estimadas, el 23 de agosto de 2026, con herramientas que están en el repositorio y se pueden volver a ejecutar.</p>
+    <ul class="cifras">
+      <li><b>272.000</b><span>palabras de cuerpo en castellano: 138.440 el manual de 1.º, 96.091 el de 2.º y 37.805 el cuaderno de la prueba. En euskera, los dos volúmenes de 2.º están completos y, desde el 31 de agosto, también el manual de 1.º.</span></li>
+      <li><b>154</b><span>decisiones editoriales registradas con su fecha y su razón.</span></li>
+      <li><b>5 / 13</b><span>citas con defecto en la primera auditoría documental. Se dice aquí porque es el argumento de que la verificación hace falta.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>Lo que este método no resuelve</h2>
+    <p>Un procedimiento que solo cuenta sus aciertos no es un procedimiento: es publicidad. Estas son sus grietas, y las conozco porque me las he encontrado.</p>
+
+    <h3>El modelo escribe con el mismo aplomo lo cierto y lo falso</h3>
+    <p>Una fecha inventada y una fecha correcta salen con idéntica seguridad y en la misma prosa fluida. No hay ninguna señal en el texto que distinga una de otra. Esta es la grieta principal y de ella se derivan casi todas las demás.</p>
+
+    <h3>Leyendo no se detecta</h3>
+    <p>Una lectura atenta encuentra incoherencias de tono, saltos de nivel, repeticiones. <strong>No encuentra que una entrada de enciclopedia haya cambiado de autor, que una tesis esté atribuida al filósofo equivocado o que un año esté desplazado.</strong> Por eso la verificación documental es un paso aparte, mecánico y aburrido, y no una forma de leer con más cuidado. Cuando alguien dice que ha «revisado» un texto así, conviene preguntarle qué quiere decir con revisar.</p>
+
+    <h3>Una fuente puede encajar en el argumento y no decir lo que se le atribuye</h3>
+    <p>Me ha pasado: una referencia cuyo título prometía exactamente la crítica que el texto citaba, y cuyo contenido no la contenía. Comprobar que la fuente existe no basta; hay que abrirla.</p>
+
+    <h3>Una ronda de corrección no basta</h3>
+    <p>La segunda revisión, hecha sobre el texto ya corregido, encontró diez errores más. No es que la primera se hiciera mal: es que corregir introduce errores nuevos.</p>
+
+    <h3>La traducción no es un botón</h3>
+    <p>El euskera exige revisión humana real, sobre todo en terminología filosófica, donde una elección desafortunada se propaga por todo el volumen. Por eso el castellano se cierra antes.</p>
+
+    <h3>Y cuesta tiempo, no lo ahorra</h3>
+    <p>Esta es la que menos se dice. El modelo redacta rápido, pero decidir, verificar, editar y registrar no se acelera: se hace más grande, porque de pronto hay mucho más texto que decidir, verificar y editar. Lo que este método permite no es trabajar menos. Es que una sola persona pueda hacer algo del tamaño de una editorial pequeña, y que se pueda comprobar cómo lo hizo.</p>
+
+    <div class="aviso">
+      <p><strong>De ahí la conclusión práctica:</strong> lo que hace fiable un libro no es la herramienta con que se redacta, sino que haya alguien identificado que responda de él y un procedimiento que cualquiera pueda inspeccionar. Las dos cosas están aquí. Y si encuentras un error —los habrá—, escríbeme y estará corregido en la edición siguiente.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="env">
+    <h2>Si quieres hacer esto en tu materia</h2>
+    <p>Nada de lo anterior es específico de la filosofía. El procedimiento —fuente única, registro de decisiones, mapa curricular, pases sucesivos, verificación aparte, rastro de autoría, dos salidas de un mismo texto— vale igual para historia, para biología o para tecnología.</p>
+    <p>Se puede aprender, y no requiere saber programar para empezar. <strong>Si tu centro, tu seminario o tu berritzegune quiere una sesión sobre cómo montar esto, escríbeme.</strong> Los libros están bajo licencia libre precisamente para que se puedan copiar, desmontar y rehacer; el método no tendría sentido guardarlo.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="env">
+    <p>Eukeni Acebal · IES Minas BHI, Barakaldo · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
+    <p><a href="/es/">← Volver a la colección</a></p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+function fijaTema(t) {
+  if (t === "claro" || t === "oscuro") {
+    document.documentElement.setAttribute("data-tema", t);
+  } else {
+    document.documentElement.removeAttribute("data-tema");
+    t = "sistema";
+  }
+  try { localStorage.setItem("arete-tema", t); } catch (e) {}
+  document.querySelectorAll("#tema button").forEach((b) => {
+    b.setAttribute("aria-pressed", String(b.dataset.tema === t));
+  });
+}
+
+let guardado = "sistema";
+try { guardado = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
+document.querySelectorAll("#tema button").forEach((b) => {
+  b.addEventListener("click", () => fijaTema(b.dataset.tema));
+});
+fijaTema(guardado);
+</script>
+</body>
+</html>

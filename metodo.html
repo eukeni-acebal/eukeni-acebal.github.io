@@ -1,36 +1,56 @@
 <!doctype html>
-<html lang="es">
+<html lang="eu">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
-<title>Cómo he hecho estos libros · Areté</title>
+<title>Nola egin ditudan liburu hauek · Areté</title>
 <meta name="author" content="Eukeni Acebal">
-<meta name="description" content="El procedimiento completo con que se han escrito los manuales de la colección Areté: qué hace el autor, qué hace el modelo de lenguaje, cómo se verifica y qué no resuelve este método.">
-<meta property="og:title" content="Cómo he hecho estos libros · Areté">
-<meta property="og:description" content="El procedimiento completo, incluido lo que no funciona.">
+<meta name="description" content="Areté bildumako eskuliburuak nola idatzi diren: egileak zer egiten duen, hizkuntza-ereduak zer egiten duen, nola egiaztatzen den eta metodo honek zer ez duen konpontzen.">
+<meta property="og:title" content="Nola egin ditudan liburu hauek · Areté">
+<meta property="og:description" content="Prozedura osoa, baita funtzionatzen ez duena ere.">
 <meta property="og:type" content="article">
 
 <!--
   ============================================================
-  PÁGINA DE MÉTODO · https://eukeni-acebal.github.io/arete/metodo.html
-  Fichero autocontenido a propósito: además de servirse en la web, se manda
-  suelto por correo a quien pregunta cómo está hecho esto. Por eso duplica el
-  CSS de index.html en vez de compartir hoja: tiene que abrir sola.
+  PÁGINA DE MÉTODO · VERSIÓN EUSKERA (POR DEFECTO) · vive en /metodo.html
+  BORRADOR 2026-09-01, sin revisar ni publicar.
 
-  IDIOMAS (D6, D7): castellano. EL EUSKERA NO ESTÁ ESCRITO y no debe
-  redactarse aquí: se obtiene por traducción con revisión humana, después de
-  cerrar el castellano.
+  Traducción íntegra pedida explícitamente por Eukeni el 2026-09-01
+  («el método tiene que estar traducido, también»): hasta esa fecha no
+  existía versión en euskera de esta página (D6/D7: el castellano se
+  cierra antes de traducir; el propio texto llevaba meses cerrado, así
+  que la traducción era el paso que faltaba). Es traducción de esta
+  sesión, SIN revisión humana todavía — exactamente el paso pendiente
+  antes de publicar.
 
-  CIFRAS: medidas el 2026-08-23, no estimadas.
+  Su gemela en castellano es arete/es/metodo.html (el mismo fichero que
+  antes vivía en la raíz, movido a /es/ cuando la raíz pasó a servir esta
+  versión). Los dos enlaces «volver» de este fichero (cabecera y pie)
+  apuntan a «/» porque el contenido es euskera.
+
+  Fichero autocontenido a propósito, como el original castellano: además
+  de servirse en la web, se manda suelto por correo a quien pregunta cómo
+  está hecho esto. Por eso duplica el CSS de index.html en vez de
+  compartir hoja: tiene que abrir sola.
+
+  CIFRAS: neurtuak 2026-08-23an, ez estimatuak — mismas cifras que la
+  versión castellana, solo traducidas las etiquetas. La frase sobre el
+  euskera se ha actualizado (el original decía «el manual de 1.º llega en
+  septiembre»; el propio comentario D234 del hub dice que se publicó el
+  31-08). Verificar antes de publicar.
     · bin/mide-autoria.py  → 60,0 % de composición, 80,8 % de supervivencia
     · recuento de cuerpo   → F1 138.440 · HF 96.091 · PAU 37.805 (castellano)
     · auditoría D146       → 13 citas en bloque revisadas, 5 con defecto
-  Si se rehace alguna, rehacer también el bloque «Las cifras».
-  RETIRADAS 2026-08-31 (Eukeni, D241): el 60,0 % de composición y el 80,8 % de
-  supervivencia ya NO se muestran en «Las cifras» — sobraban y no había certeza de
-  que siguieran actualizadas. El resto de la medición de mide-autoria.py sigue
-  siendo válida si se necesita en otro sitio; solo se retira su presencia aquí.
+  Si se rehace alguna, rehacer también el bloque «Zenbakiak» en LOS DOS
+  ficheros (este y arete/es/metodo.html).
+
+  TERMINOLOGÍA: <code>redacción EA</code> / <code>base EA · redacción
+  Claude</code> se han dejado SIN traducir dentro de las etiquetas <code>:
+  son la convención literal que usan las cabeceras de los capítulos
+  fuente (en castellano), no prosa — traducirlas sería describir un tag
+  que no existe en el repositorio. Se glosan entre paréntesis en el texto
+  que las rodea.
   ============================================================
 -->
 
@@ -124,13 +144,13 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
 
 <header>
   <div class="env">
-    <a class="volver" href="./">← Areté</a>
-    <h1>Cómo he hecho estos libros</h1>
-    <p class="entradilla">Incluido lo que este método no resuelve, que es la parte que suele faltar.</p>
-    <nav class="tema" id="tema" aria-label="Tema de color">
+    <a class="volver" href="/">← Areté</a>
+    <h1>Nola egin ditudan liburu hauek</h1>
+    <p class="entradilla">Metodo honek konpontzen ez duena barne, falta izaten den zatia baita.</p>
+    <nav class="tema" id="tema" aria-label="Kolore-gaia">
       <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
-      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
-      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Argia</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Iluna</button>
     </nav>
   </div>
 </header>
@@ -139,88 +159,88 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
 
 <section>
   <div class="env">
-    <p>Hay una pregunta que casi ningún libro de texto contesta: <strong>¿quién escribió esto, y cómo sabemos que lo que dice es verdad?</strong> No es una pregunta retórica. Un manual comercial lo firman varios autores contratados, lo reescribe un equipo editorial que no aparece en ninguna página, y no hay forma de saber qué apartado escribió quién ni qué se comprobó antes de imprimirlo. No es negligencia: es cómo se producen.</p>
-    <p>Estos libros contestan esa pregunta. Esta página es la respuesta larga, y está aquí porque creo que debería ser lo normal, no una rareza.</p>
+    <p>Ia liburu batek ere ez du erantzuten galdera bati: <strong>nork idatzi du hau, eta nola dakigu esaten duena egia dela?</strong> Ez da galdera erretorikoa. Liburu komertzial bat kontratatutako hainbat egilek sinatzen dute, inongo orritan agertzen ez den talde editorial batek berridazten du, eta ez dago jakiterik zein ataletan idatzi zuen zeinek edo zer egiaztatu zen inprimatu aurretik. Ez da axolagabekeria: horrela ekoizten dira.</p>
+    <p>Liburu hauek erantzuten diote galdera horri. Orrialde hau erantzun luzea da, eta hemen dago normala izan beharko lukeela uste dudalako, ez arraroa denik.</p>
   </div>
 </section>
 
 <section>
   <div class="env">
-    <h2>El reparto: quién hace qué</h2>
-    <p><strong>Los borradores de estos libros no están escritos a mano.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. Lo digo en la primera página de cada volumen y lo repito aquí porque es el dato que cambia cómo hay que leer todo lo demás.</p>
+    <h2>Banaketa: nork zer egiten duen</h2>
+    <p><strong>Liburu hauen zirriborroak ez daude eskuz idatzita.</strong> Hizkuntza-eredu batek egin ditu, Claude-k (Anthropic), nire jarraibideetatik abiatuta eta nire edizioaren azpian. Liburuki bakoitzaren lehen orrian diot, eta hemen errepikatzen dut gainerakoa nola irakurri behar den aldatzen duen datua delako.</p>
     <div class="reparto">
       <div>
-        <h4>Yo</h4>
+        <h4>Nik</h4>
         <ul>
-          <li>Concebir el libro y su arquitectura</li>
-          <li>Decidir qué entra y qué se queda fuera</li>
-          <li>Ajustarlo al currículo oficial</li>
-          <li>Fijar la terminología filosófica</li>
-          <li>Elegir los textos y las citas</li>
-          <li>Editar y reescribir cada tramo</li>
-          <li>Verificar lo que se afirma</li>
-          <li>Responder de todo ello</li>
+          <li>Liburua eta haren egitura pentsatu</li>
+          <li>Zer sartzen den eta zer geratzen den kanpoan erabaki</li>
+          <li>Curriculum ofizialera egokitu</li>
+          <li>Terminologia filosofikoa finkatu</li>
+          <li>Testuak eta aipuak aukeratu</li>
+          <li>Zati bakoitza editatu eta berridatzi</li>
+          <li>Diotena egiaztatu</li>
+          <li>Horren guztiaren erantzule izan</li>
         </ul>
       </div>
       <div>
-        <h4>El modelo</h4>
+        <h4>Ereduak</h4>
         <ul>
-          <li>Redactar los borradores que le encargo</li>
-          <li>Sostener una voz uniforme a lo largo de 270.000 palabras</li>
-          <li>Proponer estructuras y detectar huecos</li>
-          <li>Traducir del castellano al euskera</li>
-          <li>Señalarme contradicciones y repeticiones</li>
-          <li>Revisar críticamente mis propias decisiones</li>
+          <li>Eskatzen dizkiodan zirriborroak idatzi</li>
+          <li>270.000 hitzetan zehar ahots bateratuari eutsi</li>
+          <li>Egiturak proposatu eta hutsuneak antzeman</li>
+          <li>Gaztelaniatik euskarara itzuli</li>
+          <li>Kontraesanak eta errepikapenak seinalatu</li>
+          <li>Nire erabakiak kritikoki berrikusi</li>
         </ul>
       </div>
     </div>
-    <p style="margin-top:1.5rem">Dicho en corto: <strong>el criterio es mío y la redacción es suya.</strong> Y la responsabilidad, entera, es mía: un modelo no puede firmar una fe de erratas ni comparecer si alguien pregunta de dónde sale una afirmación.</p>
+    <p style="margin-top:1.5rem">Labur esanda: <strong>irizpidea nirea da eta idazketa harena.</strong> Eta erantzukizuna, osorik, nirea da: eredu batek ezin du akats-zerrenda bat sinatu, ezta agertu ere norbaitek galdetzen badu baieztapen bat nondik datorren.</p>
   </div>
 </section>
 
 <section>
   <div class="env">
-    <h2>El procedimiento</h2>
+    <h2>Prozedura</h2>
     <ol class="pasos">
       <li>
-        <b>Una sola fuente, en texto plano</b>
-        <p>Todo el proyecto vive en un repositorio de control de versiones, escrito en Markdown. Nada se duplica: si un dato aparece en dos sitios, uno de los dos enlaza al otro. De esa fuente única salen después el PDF y la web, que por construcción no pueden decir cosas distintas.</p>
+        <b>Iturri bakarra, testu lauan</b>
+        <p>Proiektu osoa bertsio-kontroleko biltegi batean bizi da, Markdown-en idatzita. Ezer ez da bikoiztu: datu bat bi tokitan agertzen bada, batak bestera estekatzen du. Iturri bakar horretatik ateratzen dira gero PDFa eta weba, eta, eraikitzeko moduagatik bertagatik, ezin dute gauza desberdinik esan.</p>
       </li>
       <li>
-        <b>Un registro de decisiones, numerado</b>
-        <p>Cada decisión editorial de fondo —una convención tipográfica, dónde va un tema, si una traducción es admisible, qué se poda— se escribe con su número, su fecha y <em>su razón</em>. Van por la 154. Sirve para lo aburrido y decisivo: que dentro de un año nadie, yo incluido, deshaga por olvido algo que se decidió por un motivo.</p>
+        <b>Erabakien erregistro bat, zenbakiduna</b>
+        <p>Funtsezko erabaki editorial bakoitza —hitzarmen tipografiko bat, gai baten kokapena, itzulpen bat onargarria den, zer moztu— zenbakiarekin, datarekin eta <em>bere arrazoiarekin</em> idazten da. 154. inguruan doaz. Aspergarria eta erabakigarria denerako balio du: urtebete barru, ni barne, inork ez dezan ahaztuz galdu arrazoi batengatik erabaki zena.</p>
       </li>
       <li>
-        <b>El currículo, mapeado apartado por apartado</b>
-        <p>Existe un documento que cruza cada apartado del currículo oficial con la sección del libro que lo cubre, y señala en rojo lo que no está cubierto. No es una declaración de intenciones: es una tabla que se puede auditar. Es lo que permite afirmar que el currículo está completo sin que sea una forma de hablar.</p>
+        <b>Curriculuma, atalez atal mapatuta</b>
+        <p>Curriculum ofizialaren atal bakoitza liburuko zein atalek estaltzen duen gurutzatzen duen dokumentu bat dago, eta gorriz seinalatzen du estali gabe dagoena. Ez da asmo-adierazpen bat: ikuska daitekeen taula bat da. Horrek ahalbidetzen du curriculuma osorik dagoela esatea, hitz hutsa izan gabe.</p>
       </li>
       <li>
-        <b>La redacción, por capas y con pases</b>
-        <p>Ningún tema se escribe de una vez. Se levanta la estructura, se redacta, y después pasa por revisiones sucesivas con un objetivo cada una: nivel de exigencia, densidad, coherencia con los temas vecinos, voz. Cada pase deja escrito en la cabecera del fichero qué se le hizo y por qué.</p>
+        <b>Idazketa, geruzaz geruza eta pasaldiz</b>
+        <p>Ez da gairik behin batean idazten. Egitura altxatzen da, idazten da, eta ondoren hurrenez hurreneko berrikuspenetatik pasatzen da, bakoitzak helburu batekin: exijentzia-maila, dentsitatea, ondoko gaiekiko koherentzia, ahotsa. Pasaldi bakoitzak fitxategiaren goiburuan idatzita uzten du zer egin zaion eta zergatik.</p>
       </li>
       <li>
-        <b>Una revisión adversarial</b>
-        <p>Los tramos importantes se someten a una lectura hecha con la instrucción explícita de buscar errores y objeciones, no de aprobar. Funciona: en un solo pase encontró once fallos que la lectura normal había dejado pasar.</p>
+        <b>Berrikuspen aurkako bat</b>
+        <p>Zati garrantzitsuak akatsak eta objekzioak bilatzeko jarraibide esplizituarekin egindako irakurketa baten mende jartzen dira, ez onartzeko. Funtzionatzen du: pasaldi bakarrean, irakurketa arruntak pasatzen utzi zituen hamaika akats aurkitu zituen.</p>
       </li>
       <li>
-        <b>Verificación documental de las citas</b>
-        <p>Aparte de leer el texto, se abre cada cita, cada referencia y cada fecha y se comprueba contra la fuente. Es trabajo mecánico y es imprescindible, porque —como se explica más abajo— leyendo no se detectan estos fallos. Una auditoría de trece citas en bloque encontró cinco con defecto.</p>
+        <b>Aipuen egiaztapen dokumentala</b>
+        <p>Testua irakurtzeaz gain, aipu, erreferentzia eta data bakoitza irekitzen da eta iturriaren aurka egiaztatzen. Lan mekanikoa da eta ezinbestekoa, behean azaltzen den bezala irakurriz ez baitira akats hauek antzematen. Bloke-aipuen hamahiru aiputik egindako auditoretza batek bost akatsdun aurkitu zituen.</p>
       </li>
       <li>
-        <b>Derechos de cita, caso por caso</b>
-        <p>Los textos de filósofos pertenecen a sus autores y traductores. Cada uno lleva su ficha —autor, obra, traductor, edición— y consta bajo qué amparo legal se reproduce. Cuando la traducción es mía, lo digo. La licencia libre del libro cubre lo que yo escribo; no alcanza a esos fragmentos, y así queda declarado.</p>
+        <b>Aipamen-eskubideak, kasuz kasu</b>
+        <p>Aipatzen diren filosofoen testuak beren egile eta itzultzaileenak dira. Bakoitzak bere fitxa darama —egilea, obra, itzultzailea, edizioa— eta jasota geratzen da zein babes legalen pean erreproduzitzen den. Itzulpena nirea denean, esaten dut. Liburuaren lizentzia askeak nik idazten dudana estaltzen du; ez du zati horietaraino heltzen, eta horrela dago adierazita.</p>
       </li>
       <li>
-        <b>Rastro de autoría, pieza a pieza</b>
-        <p>La cabecera de cada tema registra qué mano redactó cada tramo: <code>redacción EA</code>, o <code>base EA · redacción Claude</code> con su fecha. Es lo que permite contestar con precisión, y no con una impresión, cuánto del libro escribió cada uno.</p>
+        <b>Egiletza-arrastoa, zatiz zati</b>
+        <p>Gai bakoitzaren goiburuak jasotzen du zein eskuk idatzi zuen zati bakoitza: <code>redacción EA</code> (EAren erredakzioa), edo <code>base EA · redacción Claude</code> (EAren oinarria · Clauderen erredakzioa) bere datarekin. Horrek ahalbidetzen du zehaztasunez erantzutea —inpresio batekin izan beharrean— liburuaren zenbat idatzi zuen bakoitzak.</p>
       </li>
       <li>
-        <b>Las dos lenguas, en un orden estricto</b>
-        <p>El castellano es la fuente canónica y se cierra primero. El euskera se obtiene por traducción y <strong>pasa siempre por revisión humana</strong>: no se redacta terminología filosófica en euskera de forma independiente. Traducir un texto sin cerrar duplica los errores y obliga a rehacer lo ya revisado.</p>
+        <b>Bi hizkuntzak, ordena zorrotz batean</b>
+        <p>Gaztelania da iturri kanonikoa eta lehenengo ixten da. Euskara itzulpen bidez lortzen da eta beti giza berrikuspenetik pasatzen da: ez da euskaraz terminologia filosofikorik idazten modu independentean. Itxi gabeko testu bat itzultzeak akatsak bikoizten ditu eta jada berrikusitakoa berregitera behartzen du.</p>
       </li>
       <li>
-        <b>Un texto, dos formatos</b>
-        <p>Del mismo Markdown salen el PDF, maquetado con Typst para imprimir y encuadernar, y la edición web, generada con Quarto, donde las remisiones entre secciones son enlaces. No hay dos versiones que mantener sincronizadas: hay una, y dos salidas.</p>
+        <b>Testu bat, bi formatu</b>
+        <p>Markdown berberetik ateratzen dira PDFa, Typst-ekin maketatua inprimatzeko eta koadernatzeko, eta web-edizioa, Quarto-rekin sortua, non atalen arteko erremisioak estekak diren. Ez daude sinkronizatu behar diren bi bertsio: bat dago, eta bi irteera.</p>
       </li>
     </ol>
   </div>
@@ -228,50 +248,50 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
 
 <section>
   <div class="env">
-    <h2>Las cifras</h2>
-    <p>Medidas, no estimadas, el 23 de agosto de 2026, con herramientas que están en el repositorio y se pueden volver a ejecutar.</p>
+    <h2>Zenbakiak</h2>
+    <p>Neurtuak, ez estimatuak, 2026ko abuztuaren 23an, biltegian dauden eta berriro exekuta daitezkeen tresnekin.</p>
     <ul class="cifras">
-      <li><b>272.000</b><span>palabras de cuerpo en castellano: 138.440 el manual de 1.º, 96.091 el de 2.º y 37.805 el cuaderno de la prueba. En euskera, los dos volúmenes de 2.º están completos; el manual de 1.º llega en septiembre.</span></li>
-      <li><b>154</b><span>decisiones editoriales registradas con su fecha y su razón.</span></li>
-      <li><b>5 / 13</b><span>citas con defecto en la primera auditoría documental. Se dice aquí porque es el argumento de que la verificación hace falta.</span></li>
+      <li><b>272.000</b><span>gorputz-hitz gaztelaniaz: 138.440 1.eko eskuliburuan, 96.091 2.ekoan eta 37.805 frogaren koadernoan. Euskaraz, 2.eko bi liburukiak osorik daude eta, abuztuaren 31tik, baita 1.eko eskuliburua ere.</span></li>
+      <li><b>154</b><span>erabaki editorial, beren datarekin eta arrazoiarekin erregistratuta.</span></li>
+      <li><b>5 / 13</b><span>aipu akatsdun lehen auditoretza dokumentalean. Hemen esaten da egiaztapena beharrezkoa dela erakusten duen argudioa delako.</span></li>
     </ul>
   </div>
 </section>
 
 <section>
   <div class="env">
-    <h2>Lo que este método no resuelve</h2>
-    <p>Un procedimiento que solo cuenta sus aciertos no es un procedimiento: es publicidad. Estas son sus grietas, y las conozco porque me las he encontrado.</p>
+    <h2>Metodo honek konpontzen ez duena</h2>
+    <p>Bere asmatzeak bakarrik kontatzen dituen prozedura bat ez da prozedura bat: publizitatea da. Hauek dira haren arrakalak, eta ezagutzen ditut aurkitu ditudalako.</p>
 
-    <h3>El modelo escribe con el mismo aplomo lo cierto y lo falso</h3>
-    <p>Una fecha inventada y una fecha correcta salen con idéntica seguridad y en la misma prosa fluida. No hay ninguna señal en el texto que distinga una de otra. Esta es la grieta principal y de ella se derivan casi todas las demás.</p>
+    <h3>Ereduak segurtasun berarekin idazten du egia eta gezurra</h3>
+    <p>Asmatutako data bat eta data zuzen bat segurtasun berarekin ateratzen dira, eta prosa jario berean. Ez dago testuan bata bestetik bereizten duen inolako seinalerik. Hau da arrakala nagusia, eta bertatik eratortzen dira gainerako gehienak.</p>
 
-    <h3>Leyendo no se detecta</h3>
-    <p>Una lectura atenta encuentra incoherencias de tono, saltos de nivel, repeticiones. <strong>No encuentra que una entrada de enciclopedia haya cambiado de autor, que una tesis esté atribuida al filósofo equivocado o que un año esté desplazado.</strong> Por eso la verificación documental es un paso aparte, mecánico y aburrido, y no una forma de leer con más cuidado. Cuando alguien dice que ha «revisado» un texto así, conviene preguntarle qué quiere decir con revisar.</p>
+    <h3>Irakurriz ez da antzematen</h3>
+    <p>Irakurketa arreta handikoak tonu-inkoherentziak, maila-jauziak, errepikapenak aurkitzen ditu. <strong>Ez du aurkitzen entziklopedia-sarrera batek egilez aldatu duela, tesi bat filosofo okerrari egotzita dagoela edo urte bat lekuz kanpo dagoela.</strong> Horregatik da egiaztapen dokumentala urrats bereizi bat, mekanikoa eta aspergarria, eta ez arretaz irakurtzeko modu bat. Norbaitek testu bat horrela «berrikusi» duela dionean, komeni da galdetzea zer esan nahi duen berrikusteaz.</p>
 
-    <h3>Una fuente puede encajar en el argumento y no decir lo que se le atribuye</h3>
-    <p>Me ha pasado: una referencia cuyo título prometía exactamente la crítica que el texto citaba, y cuyo contenido no la contenía. Comprobar que la fuente existe no basta; hay que abrirla.</p>
+    <h3>Iturri bat argudioan egoki daiteke eta ez esan egozten zaiona</h3>
+    <p>Gertatu zait: tituluak agindutako kritika hori zehazki agintzen zuen erreferentzia bat, eta edukiak ez zuena jasotzen. Iturria existitzen dela egiaztatzea ez da nahikoa; ireki egin behar da.</p>
 
-    <h3>Una ronda de corrección no basta</h3>
-    <p>La segunda revisión, hecha sobre el texto ya corregido, encontró diez errores más. No es que la primera se hiciera mal: es que corregir introduce errores nuevos.</p>
+    <h3>Zuzenketa-itzuli bakar batek ez du nahikoa</h3>
+    <p>Jada zuzendutako testuaren gainean egindako bigarren berrikuspenak hamar akats gehiago aurkitu zituen. Ez da lehenengoa gaizki egin zelako: zuzentzeak akats berriak sartzen dituelako da.</p>
 
-    <h3>La traducción no es un botón</h3>
-    <p>El euskera exige revisión humana real, sobre todo en terminología filosófica, donde una elección desafortunada se propaga por todo el volumen. Por eso el castellano se cierra antes.</p>
+    <h3>Itzulpena ez da botoi bat</h3>
+    <p>Euskarak benetako giza berrikuspena eskatzen du, batez ere terminologia filosofikoan, non aukera zorigaiztoko batek liburuki osoan zehar zabaltzen den. Horregatik ixten da gaztelania lehenago.</p>
 
-    <h3>Y cuesta tiempo, no lo ahorra</h3>
-    <p>Esta es la que menos se dice. El modelo redacta rápido, pero decidir, verificar, editar y registrar no se acelera: se hace más grande, porque de pronto hay mucho más texto que decidir, verificar y editar. Lo que este método permite no es trabajar menos. Es que una sola persona pueda hacer algo del tamaño de una editorial pequeña, y que se pueda comprobar cómo lo hizo.</p>
+    <h3>Eta denbora kostatzen du, ez du aurrezten</h3>
+    <p>Hau da gutxien esaten dena. Ereduak azkar idazten du, baina erabaki, egiaztatu, editatu eta erregistratzeak ez du bizkortzen: handiagoa egiten da, bat-batean erabaki, egiaztatu eta editatu behar den testu askoz gehiago dagoelako. Metodo honek ahalbidetzen duena ez da gutxiago lan egitea. Pertsona bakar batek argitaletxe txiki baten tamainako zerbait egin ahal izatea da, eta nola egin duen egiaztatu ahal izatea.</p>
 
     <div class="aviso">
-      <p><strong>De ahí la conclusión práctica:</strong> lo que hace fiable un libro no es la herramienta con que se redacta, sino que haya alguien identificado que responda de él y un procedimiento que cualquiera pueda inspeccionar. Las dos cosas están aquí. Y si encuentras un error —los habrá—, escríbeme y estará corregido en la edición siguiente.</p>
+      <p><strong>Hortik dator ondorio praktikoa:</strong> liburu bat fidagarri egiten duena ez da idazteko erabiltzen den tresna, baizik eta identifikatutako norbait egotea horren erantzule eta edonork ikuska dezakeen prozedura bat izatea. Bi gauzak daude hemen. Eta akatsen bat aurkitzen baduzu —izango dira—, idatzidazu eta hurrengo edizioan zuzenduta egongo da.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="env">
-    <h2>Si quieres hacer esto en tu materia</h2>
-    <p>Nada de lo anterior es específico de la filosofía. El procedimiento —fuente única, registro de decisiones, mapa curricular, pases sucesivos, verificación aparte, rastro de autoría, dos salidas de un mismo texto— vale igual para historia, para biología o para tecnología.</p>
-    <p>Se puede aprender, y no requiere saber programar para empezar. <strong>Si tu centro, tu seminario o tu berritzegune quiere una sesión sobre cómo montar esto, escríbeme.</strong> Los libros están bajo licencia libre precisamente para que se puedan copiar, desmontar y rehacer; el método no tendría sentido guardarlo.</p>
+    <h2>Zure irakasgaian hau egin nahi baduzu</h2>
+    <p>Aurrekoa ez da filosofiarena bakarrik. Prozedura —iturri bakarra, erabakien erregistroa, mapa kurrikularra, hurrenez hurreneko pasaldiak, egiaztapen bereizia, egiletza-arrastoa, testu bereko bi irteera— historiarako, biologiarako edo teknologiarako berdin balio du.</p>
+    <p>Ikas daiteke, eta ez da programatzen jakin behar hasteko. <strong>Zure ikastetxeak, zure sailak edo zure berritzeguneak hau nola muntatu jakiteko saio bat nahi badu, idatzidazu.</strong> Liburuak lizentzia askearen pean daude, hain zuzen, kopiatu, desmuntatu eta berregin ahal izateko; ez luke zentzurik metodoa gordetzeak.</p>
   </div>
 </section>
 
@@ -280,7 +300,7 @@ footer{border-top:1px solid var(--linea);padding:2.5rem 0 4rem;font-size:.92rem;
 <footer>
   <div class="env">
     <p>Eukeni Acebal · IES Minas BHI, Barakaldo · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
-    <p><a href="./">← Volver a la colección</a></p>
+    <p><a href="/">← Bildumara itzuli</a></p>
   </div>
 </footer>
 
