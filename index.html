@@ -3,60 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
-<title>Areté · Batxilergorako filosofia-materialak</title>
+<script>(function(){var d=document.documentElement;d.className+=" js";try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")d.setAttribute("data-tema",t);}catch(e){}})();</script>
+<title>Areté · Batxilergorako filosofia-liburuak</title>
 <meta name="author" content="Eukeni Acebal">
 <meta name="description" content="Areté bilduma: Batxilergorako Filosofia eta Filosofiaren Historiako eskuliburuak eta koadernoak, gaztelaniaz eta euskaraz. Doakoak, webgunean eta PDFn.">
-<meta property="og:title" content="Areté · Batxilergorako filosofia-materialak">
-<meta property="og:description" content="Batxilergorako Filosofia eta Filosofiaren Historiako eskuliburuak eta koadernoak, gaztelaniaz eta euskaraz. CC BY-SA 4.0 lizentzia askea.">
+<meta property="og:title" content="Areté · Batxilergorako filosofia-liburuak">
+<meta property="og:description" content="Batxilergorako Filosofia eta Filosofiaren Historiako eskuliburuak eta koadernoak. CC BY-SA 4.0 lizentzia askea.">
 <meta property="og:type" content="website">
+<link rel="alternate" hreflang="eu" href="https://arete.eukeniacebal.net/">
+<link rel="alternate" hreflang="es" href="https://arete.eukeniacebal.net/es/">
 
 <!--
-  ============================================================
-  HUB DE LA COLECCIÓN ARETÉ — VERSIÓN EUSKERA (POR DEFECTO)
-  BORRADOR 2026-09-01, sin revisar ni publicar.
+  Hub de la colección Areté, versión euskera (D256). Vive en la raíz y es
+  la que se abre por defecto; la castellana está en /es/. Las dos tienen la
+  misma estructura y se cambian a la vez.
 
-  QUÉ CAMBIA RESPECTO A LA VERSIÓN ANTERIOR (bilingüe, en una sola página):
-   1. Dos páginas separadas, como ya hace el resto de la colección
-      (hf/fh, filosofia-manual/filosofia-testuliburua, pau/usap). Esta es
-      la EU y vive en la raíz (`/`, el sitio por defecto). La ES en `/es/`.
-   2. El enlace a la otra lengua va MUY ARRIBA en la cabecera —
-      «Gaztelaniazko bertsioa»—, con el mismo rótulo que ya usan los
-      seis volúmenes para su propio cruce de idioma.
-   3. Cada página muestra SOLO los libros de su propia lengua (decisión
-      de Eukeni, 2026-09-01: «en la versión eu no pinta nada las
-      versiones en castellano; si alguien lo quiere en otro idioma, que
-      cambie de idioma al principio»). El cruce de idioma se resuelve
-      una vez, en la cabecera — no libro a libro dentro de «La colección»
-      ni en «Descargar el paquete completo». La única excepción es
-      «Filosofia · Koadernoa», que no existe todavía en ninguna lengua:
-      es un único elemento pendiente, no una duplicación por idioma.
-   4. El filtro por rol (alumnado/profesorado/administración) no es un
-      enlace ancla a un tramo de esta misma página: es un estado
-      (data-rol-seccion + JS) que oculta/enseña secciones enteras.
-      Elegir «Ikasleak» simplifica la página a lo esencial (qué es
-      esto + la colección); elegir «Irakasleak» o «Hezkuntza-
-      administrazioa» no oculta nada, porque ya querían verlo todo
-      (método, descargas conjuntas, novedades). Se recuerda con
-      localStorage («arete-rol»), igual que el tema de color.
-   5. «Nola egin ditudan» (metodo.html) está traducido íntegro al
-      euskera — pedido explícito de Eukeni, 2026-09-01. Ya no hace
-      falta la nota «(gaztelaniaz)» junto al enlace.
+  Estructura: cabecera (marca, lema, firma, autoría en una frase) →
+  elección de curso → bloque para el profesorado → pie (licencia, contacto,
+  tema). Cada página enseña solo los libros de su lengua (D243).
 
-  TERMINOLOGÍA REUTILIZADA (no inventada esta sesión): «PDFa deskargatu»,
-  «Idatzidazu», «Egilea», «Bilatu», «Gaztelaniazko bertsioa» / «Euskarazko
-  bertsioa», «Eskuliburua», «Koadernoa», «irakurgaiak», el párrafo de
-  licencia CC BY-SA — todo tomado tal cual de fh/index.html, hf/index.html,
-  usap/index.html y filosofia-testuliburua/index.html, que son páginas ya
-  traducidas y revisadas por Eukeni. El texto nuevo (roles, secciones de
-  este hub, metodo.html) es traducción de esta sesión, SIN revisión humana
-  todavía: exactamente el paso que falta antes de publicar (D6, D7).
-
-  PENDIENTE DE VERIFICAR: la cifra de «Las cifras» sobre qué está completo
-  en euskera se ha actualizado (antes decía que solo 2.º lo estaba; el
-  propio comentario D234 de la versión anterior de este fichero dice que
-  1.º se publicó en las dos lenguas el 31-08).
-  ============================================================
+  Comportamiento: elegir curso despliega sus volúmenes en la propia tarjeta
+  y pliega la otra en una línea. El curso se recuerda (localStorage
+  «arete-curso») y se puede enlazar: /#1 y /#2 abren la página con
+  ese curso desplegado, y el hash manda sobre lo recordado. Sin JS se ven
+  los dos cursos desplegados. El tema de color comparte la clave
+  «arete-tema» con metodo.html y los volúmenes.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,285 +35,224 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap">
 <style>
 :root{
-  /* Tokens del tema Areté (quarto-theme/custom.scss): el hub y los seis
-     volúmenes comparten paleta y tipografía, para que pasar de la portada
-     a un libro no cambie el suelo bajo los pies. */
   --papel:#f6f1e4; --tinta:#2b241a; --suave:#6e6353; --linea:#ddd3bd;
-  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.07);
+  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.08);
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
   --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-tema="claro"]){
-    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
-    --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#332e26;
+    --acento:#d0a35c; --acento-flojo:#2a231b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
   }
 }
 :root[data-tema="oscuro"]{
-  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
-  --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#332e26;
+  --acento:#d0a35c; --acento-flojo:#2a231b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; background:var(--papel); color:var(--tinta);
-  font-family:var(--sans); font-size:17px; line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-.env{max-width:60rem;margin:0 auto;padding:0 1.5rem}
-a{color:var(--acento)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.env{max-width:46rem;margin:0 auto;padding:0 1.5rem}
+a{color:var(--acento);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acento);outline-offset:3px;border-radius:.3rem}
 
-/* ---------- cabecera ---------- */
-header{padding:4.5rem 0 3rem;border-bottom:1px solid var(--linea)}
-.marca{
-  font-family:var(--serif); font-size:clamp(3.2rem,11vw,5.5rem); line-height:.95;
-  letter-spacing:-.02em; margin:0; font-weight:600;
-}
+/* cabecera */
+.cabecera{padding-top:1.4rem;padding-bottom:3rem}
+.barra{display:flex;justify-content:flex-end}
+.lengua{font-size:.9rem;color:var(--suave);text-decoration:none;padding:.3rem 0}
+.lengua:hover{color:var(--acento)}
+.marca{font-family:var(--serif);font-size:clamp(3.4rem,13vw,5.6rem);line-height:.95;letter-spacing:-.02em;margin:2.2rem 0 0;font-weight:600}
 .marca .tilde{color:var(--acento)}
-.lema{
-  font-family:var(--serif); font-size:clamp(1.15rem,3.2vw,1.5rem); font-style:italic;
-  color:var(--suave); margin:.9rem 0 0; max-width:34rem;
-}
-.firma{
-  margin:1.8rem 0 0; font-size:.85rem; letter-spacing:.11em; text-transform:uppercase;
-  color:var(--suave);
-}
-.otra-lengua{margin:1.6rem 0 0}
-.otra-lengua a{
-  display:inline-flex; align-items:center; gap:.4rem; font-size:.92rem; font-weight:600;
-  text-decoration:none; padding:.55rem 1.1rem; border-radius:2rem; border:1px solid var(--acento);
-  color:var(--acento); transition:.15s;
-}
-.otra-lengua a:hover{background:var(--acento-flojo)}
-.tema{display:flex;gap:.4rem;margin:1.4rem 0 0}
-.tema button{
-  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
-  background:none;border:1px solid var(--linea);color:var(--suave);
-  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
-}
-.tema button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+.lema{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.4vw,1.45rem);line-height:1.45;color:var(--suave);margin:.9rem 0 0;max-width:32rem}
+.firma{margin:1.4rem 0 0;font-size:.9rem;color:var(--suave)}
+.autoria{margin:.35rem 0 0;font-size:.9rem;color:var(--suave);max-width:36rem}
 
-/* ---------- secciones ---------- */
-section{padding:3.5rem 0}
-section + section{border-top:1px solid var(--linea)}
-h2{
-  font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:-.01em;
-  margin:0 0 .4rem;
-}
-.sub{color:var(--suave);margin:0 0 2.2rem;max-width:42rem}
-p{max-width:42rem}
+/* cursos */
+.libros{padding-bottom:3.5rem}
+.pregunta{font-size:.95rem;font-weight:500;color:var(--suave);margin:0 0 .9rem}
+.cursos{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem}
+.cursos[data-abierto="1"],.cursos[data-abierto="2"]{grid-template-columns:1fr}
+.curso{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.9rem;transition:border-color .2s,box-shadow .2s}
+.curso:hover{border-color:var(--acento)}
+.curso.abierta{order:-1;border-color:var(--acento);box-shadow:0 .6rem 1.8rem var(--sombra)}
+.curso-cab{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;padding:1.4rem 1.5rem 1.3rem;position:relative}
+.curso-cab::after{content:"";position:absolute;right:1.5rem;top:1.65rem;width:.55rem;height:.55rem;border-right:1.5px solid var(--suave);border-bottom:1.5px solid var(--suave);transform:rotate(45deg);transition:transform .25s var(--ease)}
+.abierta .curso-cab::after{transform:rotate(225deg);top:1.9rem}
+.nivel{display:block;font-size:.88rem;color:var(--suave)}
+.asignatura{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.2;margin:.15rem 2rem .35rem 0}
+.resumen{display:block;font-size:.95rem;color:var(--suave)}
+html.js .cursos[data-abierto] .curso:not(.abierta) .curso-cab{padding:.85rem 1.5rem}
+html.js .cursos[data-abierto] .curso:not(.abierta) .curso-cab::after{top:1.15rem;transform:rotate(-45deg)}
+html.js .cursos[data-abierto] .curso:not(.abierta) .nivel,
+html.js .cursos[data-abierto] .curso:not(.abierta) .asignatura{display:inline;font-size:1rem;margin:0}
+html.js .cursos[data-abierto] .curso:not(.abierta) .nivel::after{content:" · "}
+html.js .cursos[data-abierto] .curso:not(.abierta) .resumen{display:none}
+html.js .cursos[data-abierto=""] .curso,html.js .cursos:not([data-abierto]) .curso{min-height:9.5rem}
 
-/* ---------- curso + tarjetas ---------- */
-.curso{margin:0 0 2.8rem}
-.curso:last-child{margin-bottom:0}
-.curso-rotulo{
-  display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;
-  margin:0 0 1.1rem;padding-bottom:.6rem;border-bottom:1px solid var(--linea);
-}
-.curso-rotulo b{font-family:var(--serif);font-size:1.35rem;font-weight:600}
-.curso-rotulo span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
-.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
-.vol{
-  background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;
-  padding:1.3rem 1.4rem 1.2rem;display:flex;flex-direction:column;
-  transition:transform .15s,box-shadow .15s;
-}
-.vol.viva:hover{transform:translateY(-2px);box-shadow:0 .5rem 1.4rem var(--sombra)}
-.vol.pendiente{opacity:.62;border-style:dashed;background:none}
-.vol h3{font-family:var(--serif);font-size:1.22rem;font-weight:600;margin:0 0 .15rem;line-height:1.25}
-.vol .tipo{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0 0 .9rem}
-.vol .nota{font-size:.92rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
-.marcas{display:flex;gap:.4rem;flex-wrap:wrap;margin:0 0 .9rem}
-.marca-idioma,.estado{
-  font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:.2rem .55rem;border-radius:.3rem;
-}
-.marca-idioma{background:var(--acento-flojo);color:var(--acento)}
-.estado{border:1px solid var(--linea);color:var(--suave)}
-.acciones{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:auto}
-.btn{
-  font-size:.88rem;text-decoration:none;padding:.5rem .95rem;border-radius:.4rem;
-  border:1px solid var(--acento);transition:.15s;white-space:nowrap;
-}
+.vols{display:grid;grid-template-rows:1fr}
+html.js .vols{grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .35s var(--ease),visibility 0s .35s}
+html.js .abierta .vols{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .35s var(--ease)}
+.vols-in{overflow:hidden;padding:0 1.5rem}
+.vol{display:flex;gap:1rem 1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:1.1rem 0;border-top:1px solid var(--linea)}
+.vol:last-child{margin-bottom:.4rem}
+.vol-txt{flex:1 1 18rem}
+.vol h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0}
+.vol p{margin:.15rem 0 0;font-size:.92rem;color:var(--suave)}
+.vol.pendiente h3{font-weight:500;color:var(--suave)}
+.vol.pendiente p{font-style:italic}
+.vol-acc{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{font-size:.9rem;text-decoration:none;padding:.5rem 1rem;border-radius:.45rem;border:1px solid var(--acento);color:var(--acento);white-space:nowrap;transition:background .15s,filter .15s}
+.btn:hover{background:var(--acento-flojo)}
 .btn.principal{background:var(--acento);color:var(--papel)}
-.btn.principal:hover{filter:brightness(1.1)}
-.btn.secundario{color:var(--acento)}
-.btn.secundario:hover{background:var(--acento-flojo)}
-.sin-enlace{font-size:.88rem;color:var(--suave);font-style:italic}
+.btn.principal:hover{filter:brightness(1.08);background:var(--acento)}
+.aviso-docente{margin:1.2rem 0 0;font-size:.92rem;color:var(--suave)}
 
-/* ---------- método (resumen) ---------- */
-.metodo{max-width:42rem}
-.metodo p{margin:0 0 1.1rem}
-.hechos{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.1rem}
-.hechos li{display:flex;gap:1rem;padding:.7rem 0;border-top:1px solid var(--linea);align-items:baseline}
-.hechos b{font-family:var(--serif);font-size:1.5rem;color:var(--acento);min-width:5.5rem;font-weight:600}
-.hechos span{font-size:.94rem;color:var(--suave)}
+/* profesorado */
+.profesorado{padding:3.5rem 0;border-top:1px solid var(--linea)}
+.profesorado h2{font-family:var(--serif);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;margin:0}
+.profesorado .sub{color:var(--suave);margin:.3rem 0 2rem}
+.piezas{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:2rem 2.5rem}
+.pieza h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0 0 .35rem}
+.pieza p{margin:0;font-size:.95rem;color:var(--suave)}
+.pieza .enlaces{margin-top:.6rem;color:var(--tinta)}
+.pdfs{list-style:none;padding:0;margin:.2rem 0 0}
+.pdfs li{border-top:1px solid var(--linea)}
+.pdfs li:first-child{border-top:none}
+.pdfs a{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;font-size:.95rem;text-decoration:none}
+.pdfs a:hover{text-decoration:underline}
+.pdfs small{color:var(--suave);font-size:.85rem}
+.contacto{margin:2.5rem 0 0;font-size:.95rem;color:var(--suave)}
 
-/* ---------- pie ---------- */
-footer{border-top:1px solid var(--linea);padding:2.8rem 0 4rem;font-size:.92rem;color:var(--suave)}
-footer p{margin:0 0 .7rem}
-.cc{display:inline-flex;gap:.3rem;align-items:center;font-weight:600;color:var(--acento)}
+/* pie */
+footer{border-top:1px solid var(--linea);padding:2.2rem 0 3.5rem;font-size:.85rem;color:var(--suave)}
+footer p{margin:0 0 .6rem;max-width:40rem}
+.tema{display:flex;align-items:center;gap:.2rem;margin-top:1.2rem}
+.tema span{margin-right:.4rem}
+.tema button{font:inherit;background:none;border:none;color:var(--suave);padding:.2rem .45rem;border-radius:.3rem;cursor:pointer}
+.tema button:hover{color:var(--tinta)}
+.tema button[aria-pressed="true"]{color:var(--acento);background:var(--acento-flojo)}
+
 @media (max-width:32rem){
   body{font-size:16px}
-  header{padding:3rem 0 2.2rem}
-  .hechos li{flex-direction:column;gap:.1rem}
+  .curso-cab{padding:1.2rem 1.2rem 1.1rem}
+  .curso-cab::after{right:1.2rem}
+  .vols-in{padding:0 1.2rem}
+  .vol-acc{width:100%}
+  .vol-acc .btn{flex:1;text-align:center}
 }
-
-/* ---------- roles + filtro ---------- */
-.rol-iragazkia{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:0 0 2rem}
-.rol-iragazkia .etik{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
-.rol-iragazkia button{
-  font:inherit;font-size:.85rem;background:none;border:1px solid var(--linea);color:var(--suave);
-  padding:.45rem 1rem;border-radius:2rem;cursor:pointer;transition:.15s;
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
 }
-.rol-iragazkia button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
-.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.1rem;margin-top:.5rem}
-.rol{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;padding:1.4rem 1.5rem;display:flex;flex-direction:column;transition:.15s}
-.rol.activa{border-color:var(--acento)}
-.rol h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:0 0 .6rem}
-.rol p{font-size:.95rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
-.rol-botones{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
-
-/* ---------- descargas ---------- */
-.descargas{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}
-.descargas li{display:flex}
-.descargas a{
-  flex:1;font-size:.9rem;text-decoration:none;padding:.6rem 1rem;border-radius:.4rem;
-  border:1px solid var(--linea);color:var(--tinta);display:flex;justify-content:space-between;gap:.6rem;
-  align-items:baseline;
-}
-.descargas a:hover{border-color:var(--acento);color:var(--acento)}
-.descargas small{color:var(--suave);font-weight:400;white-space:nowrap}
-
-/* ---------- novedades ---------- */
-.novedades{list-style:none;padding:0;margin:0}
-.novedades li{padding:.9rem 0;border-top:1px solid var(--linea);display:flex;gap:1rem;flex-wrap:wrap}
-.novedades li:first-child{border-top:none}
-.novedades time{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);min-width:7rem}
-.novedades span{font-size:.95rem;flex:1;min-width:14rem}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="env">
-    <h1 class="marca">Aret<span class="tilde">é</span></h1>
-    <p class="lema">Batxilergorako filosofia-eskuliburuak eta koadernoak, gaztelaniaz zein euskaraz. Doakoak eta lizentzia askekoak, webgunean eta paperean.</p>
-    <p class="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
-    <nav class="otra-lengua" aria-label="Hizkuntza">
-      <a href="/es/">Gaztelaniazko bertsioa →</a>
-    </nav>
-    <nav class="tema" id="tema" aria-label="Kolore-gaia">
-      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
-      <button type="button" data-tema="claro" aria-pressed="false">Argia</button>
-      <button type="button" data-tema="oscuro" aria-pressed="false">Iluna</button>
-    </nav>
-  </div>
+<header class="cabecera env">
+  <div class="barra"><a class="lengua" href="/es/" hreflang="es" lang="es">Gaztelaniaz</a></div>
+  <h1 class="marca">Aret<span class="tilde">é</span></h1>
+  <p class="lema">Batxilergorako filosofia-liburuak, doakoak eta lizentzia askekoak, webgunean eta paperean.</p>
+  <p class="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
+  <p class="autoria">Zirriborroak hizkuntza-eredu batek idazten ditu, Claude-k; kontzepzioa, edizioa eta erantzukizuna nireak dira. <a href="metodo.html">Nola egin ditudan</a></p>
 </header>
 
 <main>
 
-<section>
-  <div class="env">
-    <h2>Zer da hau</h2>
-    <div class="metodo">
-      <p>Areté gela jakin baterako idatzitako filosofia-liburuen bilduma da: Barakaldoko institutu publiko bateko gela batentzat. Ez du inork argitaratzen. Ez dute ezer balio. Batxilergoko bi irakasgaien curriculum ofizial osoa jasotzen dute, eta hemen ikasten diren bi hizkuntzetan daude.</p>
-      <p>Liburuki bakoitza bi modutan argitaratzen dut aldi berean: edozein pantailatan irakurtzeko <strong>web-edizio</strong> bat, atalez atal estekatua, eta inprimatzeko eta koadernatzeko maketatutako <strong>PDF</strong> bat. Testu bera da. Eta liburu biziak dira: ikasturtez ikasturte zuzentzen eta osatzen ditut, sei urtean behingo berrargitalpen baten zain egon beharrean.</p>
-    </div>
-  </div>
-</section>
+<section class="libros env" aria-labelledby="t-cursos">
+  <h2 class="pregunta" id="t-cursos">Aukeratu ikasturtea</h2>
+  <div class="cursos" id="cursos">
 
-<section>
-  <div class="env">
-    <h2>Hasi zeurearekin</h2>
-    <p class="sub">Hiru ate desberdin, zertarako etorri zaren arabera.</p>
-
-    <nav class="rol-iragazkia" id="rol-iragazkia" aria-label="Ikusten dena iragazi">
-      <span class="etik">Erakutsi:</span>
-      <button type="button" data-rol="guztia" aria-pressed="true">Guztia</button>
-      <button type="button" data-rol="ikasleak" aria-pressed="false">Ikasleak</button>
-      <button type="button" data-rol="irakasleak" aria-pressed="false">Irakasleak</button>
-      <button type="button" data-rol="administrazioa" aria-pressed="false">Hezkuntza-administrazioa</button>
-    </nav>
-
-    <div class="roles">
-      <article class="rol" data-rol-txartela="ikasleak">
-        <h3>Ikasleak</h3>
-        <p>Zein da zure liburua? Hasi zure ikasturtetik.</p>
-        <div class="rol-botones">
-          <a class="btn principal" href="#bach1" data-aukeratu-rol="ikasleak">1. Batxilergora noa</a>
-          <a class="btn principal" href="#bach2" data-aukeratu-rol="ikasleak">2. Batxilergora noa</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Zerbaiten%20berri%20%C2%B7%20Ikasleak">Zerbaiten berri eman</a>
+    <article class="curso" data-curso="1">
+      <button class="curso-cab" type="button" aria-expanded="false" aria-controls="vols-1">
+        <span class="nivel">1. Batxilergoa</span>
+        <span class="asignatura">Filosofia</span>
+        <span class="resumen">Filosofia zer den galdetzetik estetikaraino.</span>
+      </button>
+      <div class="vols" id="vols-1"><div class="vols-in">
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>Eskuliburua</h3>
+            <p>Zazpi unitate eta hogeita hemezortzi gai: antropologia, epistemologia, etika, filosofia politikoa eta estetika.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/filosofia-testuliburua/">Webgunean irakurri</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">PDFa deskargatu</a>
+          </div>
         </div>
-      </article>
-      <article class="rol" data-rol-txartela="irakasleak">
-        <h3>Irakasleak</h3>
-        <p>Eskuliburu bat ebaluatzeko aurkibidea behar da, ez azala bakarrik: liburu bakoitzak berea irekitzen du osorik alboko panelean. Lizentzia askeak, gainera, gelarako inprimatzea eta zeure bertsioa egitea baimentzen du, egiletza aipatuz eta askatasun berarekin partekatuz.</p>
-        <div class="rol-botones">
-          <a class="btn secundario" href="/filosofia-testuliburua/" data-aukeratu-rol="irakasleak">Aurkibidea · Filosofia (1.)</a>
-          <a class="btn secundario" href="/fh/" data-aukeratu-rol="irakasleak">Aurkibidea · Filosofiaren Historia (2.)</a>
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="irakasleak">Nola egin ditudan</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Kontsulta%20%C2%B7%20Irakasleak" data-aukeratu-rol="irakasleak">Idatzidazu</a>
+        <div class="vol pendiente">
+          <div class="vol-txt">
+            <h3>Testu eta jardueren koadernoa</h3>
+            <p>Prestatzen.</p>
+          </div>
         </div>
-      </article>
-      <article class="rol" data-rol-txartela="administrazioa">
-        <h3>Hezkuntza-administrazioa</h3>
-        <p>Horrelako zerbait onartu aurretik jakin behar da nork erantzuten duen eta zer prozedura dagoen atzean: erabakien erregistro bat, aipamen-eskubideen kontrol bat eta egiletza-arrasto bat daramat, dokumentatuak eta ikuskaritzarako irekiak. Eta doakoa da, CC BY-SA lizentzia askearekin.</p>
-        <div class="rol-botones">
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="administrazioa">Nola egin ditudan</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Kontsulta%20%C2%B7%20Hezkuntza-administrazioa" data-aukeratu-rol="administrazioa">Idatzidazu</a>
+      </div></div>
+    </article>
+
+    <article class="curso" data-curso="2">
+      <button class="curso-cab" type="button" aria-expanded="false" aria-controls="vols-2">
+        <span class="nivel">2. Batxilergoa</span>
+        <span class="asignatura">Filosofiaren Historia</span>
+        <span class="resumen">Mendebaldeko pentsamendua, eta USaPerako prestakuntza.</span>
+      </button>
+      <div class="vols" id="vols-2"><div class="vols-in">
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>Eskuliburua</h3>
+            <p>Mendebaldeko pentsamendua hastapenetatik gaur egunera arte, bost zatitan eta hogeita bi gaitan.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/fh/">Webgunean irakurri</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf">PDFa deskargatu</a>
+          </div>
         </div>
-      </article>
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>USaPerako prestakuntza</h3>
+            <p>Frogaren metodoa, bost irakurgaiak barrutik eta lau azterketa ebatzi eta iruzkindu.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/usap/">Webgunean irakurri</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf">PDFa deskargatu</a>
+          </div>
+        </div>
+      </div></div>
+    </article>
+
+  </div>
+  <p class="aviso-docente">Irakaslea zara? <a href="#irakasleak">Aurkibideak, lizentzia eta metodoa, beherago</a></p>
+</section>
+
+<section class="profesorado" id="irakasleak" aria-labelledby="t-prof">
+  <div class="env">
+    <h2 id="t-prof">Irakasleentzat</h2>
+    <p class="sub">Ebaluatu edo zure gelan erabili nahi badituzu.</p>
+    <div class="piezas">
+      <div class="pieza">
+        <h3>Aurkibide osoa</h3>
+        <p>Eskuliburu bat ebaluatzeko aurkibidea behar da, ez azala bakarrik: liburu bakoitzak berea irekitzen du osorik alboko panelean.</p>
+        <p class="enlaces"><a href="/filosofia-testuliburua/">Filosofia (1.)</a> · <a href="/fh/">Filosofiaren Historia (2.)</a></p>
+      </div>
+      <div class="pieza">
+        <h3>Lizentzia askea</h3>
+        <p>CC BY-SA 4.0: gelarako inprimatu, banatu eta zeure bertsioa egin dezakezu, egiletza aipatuz eta askatasun berarekin partekatuz.</p>
+      </div>
+      <div class="pieza">
+        <h3>Nola egin ditudan</h3>
+        <p>Erabakien erregistro bat, aipamen-eskubideen kontrol bat eta egiletza-arrasto bat zatiz zati, dokumentatuak eta ikuskaritzarako irekiak.</p>
+        <p class="enlaces"><a href="metodo.html">Prozedura osoa, urratsez urrats</a></p>
+      </div>
+      <div class="pieza">
+        <h3>PDF guztiak</h3>
+        <ul class="pdfs">
+          <li><a href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">Filosofia · Eskuliburua <small>1.</small></a></li>
+          <li><a href="https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf">Filosofiaren Historia <small>2.</small></a></li>
+          <li><a href="https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf">USaPerako prestakuntza <small>2.</small></a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="env">
-    <h2>Bilduma</h2>
-    <p class="sub">2. Batxilergokoak osorik daude eta bi hizkuntzetan eskuragarri, eta 1.eko eskuliburua ere bai, ikasturte honetatik. Falta da haren testu eta jardueren koadernoa.</p>
-    <div id="coleccion"></div>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Deskargatu pakete osoa</h2>
-    <p class="sub">Gaur arte argitaratu ditudan sei PDFak, banan-banan, azal bakoitzetik pasatu gabe.</p>
-    <ul class="descargas">
-      <li><a href="https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf">Filosofia <small>1. · euskara</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf">Filosofiaren Historia <small>2. · euskara</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf">USaPerako prestakuntza <small>2. · euskara</small></a></li>
-    </ul>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Nola egin ditudan</h2>
-    <div class="metodo">
-      <p>Sarreran esan behar da, ez letra txikian: <strong>liburu hauen zirriborroak ez ditut eskuz idazten.</strong> Hizkuntza-eredu batek egin ditu, Claude-k (Anthropic), nire jarraibideetatik abiatuta eta nire edizioaren azpian. Kontzepzioa, egitura, zer sartzen den eta zer geratzen den kanpoan erabakitzea, curriculumera egokitzea, terminologia eta azken berrikuspena nireak dira, eta nireak dira liburuotan diodan guztiaren erantzukizuna.</p>
-      <p>Egia delako diot, eta prozedura dokumentatuta dagoelako: erabakien erregistro zenbakidun bat dago, curriculumaren estaldura-mapa atalez atal, aipamen-eskubideen kontrol bat testuz testu, eta egiletza-arrasto bat zatiz zati, zein eskuk idatzi duen jakiteko aukera ematen duena. Hori ez da ohikoa liburu batean, eta uste dut ohikoa izan beharko lukeela.</p>
-      <p><strong>Eta ez dut orririk hutsezintzat ematen.</strong> Akats bat, gaizki egotzitako zerbait edo hobeto azal daitekeen zerbait aurkitzen baduzu, idatzidazu non dagoen: abisu bakoitzak hurrengo edizioa hobetzen du.</p>
-      <p><a href="metodo.html"><strong>Prozedura osoa, urratsez urrats →</strong></a> Neurtutako zenbakiekin eta, batez ere, metodo honek konpontzen ez duenarekin.</p>
-      <ul class="hechos">
-        <li><b>272.000</b><span>gorputz-hitz gaztelaniaz, Batxilergoko bi irakasgaien curriculum ofizial osoarekin. Euskaraz, 2.eko bi liburukiak osorik daude eta, abuztuaren 31tik, baita 1.eko eskuliburua ere.</span></li>
-        <li><b>CC</b><span>lizentzia askea, BY-SA 4.0: kopiatu, egokitu eta gainean eraiki daiteke.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Zer aldatu den</h2>
-    <p class="sub">Liburu biziak dira: ikasturtez ikasturte zuzentzen eta osatzen ditut. Azken berriak.</p>
-    <ul class="novedades">
-      <li><time>31-08-2026</time><span>Filosofia 1.eko eskuliburua argitaratzen dut bi hizkuntzetan, webgunean eta PDFn.</span></li>
-      <li><time>31-08-2026</time><span>Sei azaletan botoi zuzenak jartzen ditut —irakurri, PDFa, beste hizkuntza, akatsaren berri eman— eta lizentzia-ikurra, liburu bakoitzaren barrutik ere ikusgai.</span></li>
-      <li><time>28-08-2026</time><span>Filosofia 1.eko euskarazko itzulpena ixten dut: 52 pieza, gaztelaniarekiko paritate zehatzarekin.</span></li>
-      <li><time>25-08-2026</time><span>Azal honen eta sei liburuen itxura bisuala bateratzen dut: paleta eta tipografia bera.</span></li>
-    </ul>
+    <p class="contacto">Akats bat, zalantza bat, proposamen bat? <a href="mailto:arete.eukeni@gmail.com?subject=Aret%C3%A9">Idatzidazu</a></p>
   </div>
 </section>
 
@@ -350,182 +260,65 @@ footer p{margin:0 0 .7rem}
 
 <footer>
   <div class="env">
-    <p><span class="cc">Creative Commons BY-SA 4.0</span> — liburu hauek Creative Commons BY-SA 4.0 lizentziapean argitaratzen dira: kopiatu, inprimatu, klasean banatu eta zeure bertsioak egin ditzakezu, bi baldintzarekin —nondik datorren aipatzea eta egiten duzuna askatasun berarekin argitaratzea—. Barruan aipatzen diren filosofoen testuak beren egile eta itzultzaileenak dira, eta lizentzia honek ez ditu estaltzen.</p>
+    <p>Creative Commons BY-SA 4.0. Barruan aipatzen diren filosofoen testuak beren egile eta itzultzaileenak dira, eta lizentzia honek ez ditu estaltzen.</p>
     <p>Eukeni Acebal · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
+    <nav class="tema" id="tema" aria-label="Kolore-gaia">
+      <span>Gaia:</span>
+      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Argia</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Iluna</button>
+    </nav>
   </div>
 </footer>
 
 <script>
 "use strict";
+(function () {
+  const caja = document.getElementById("cursos");
+  const cursos = [...caja.querySelectorAll(".curso")];
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ============================================================
-   1 · LOS VOLÚMENES — versión euskera. Solo ediciones en euskera
-   (decisión de Eukeni, 2026-09-01: cada hub muestra solo su lengua;
-   el cruce de idioma se resuelve una vez, en la cabecera). El único
-   elemento sin lengua fijada es «Filosofia · Koadernoa», pendiente
-   en las dos. Si cambia un enlace o un PDF, cambiar también en
-   /es/index.html.
-   ============================================================ */
-const CURSOS = [
-  {
-    id: "bach2",
-    titulo: "Filosofiaren Historia",
-    curso:  "2. Batxilergoa",
-    volumenes: [
-      {
-        titulo: "Filosofiaren Historia",
-        tipo:   "Eskuliburua",
-        lengua: "Euskara",
-        nota:   "Mendebaldeko pentsamendua hastapenetatik gaur egunera arte, bost zatitan eta hogeita bi gaitan.",
-        web: "/fh/",
-        pdf: "https://github.com/eukeni-acebal/fh/releases/latest/download/filosofiaren-historia.pdf"
-      },
-      {
-        titulo: "USaPerako prestakuntza",
-        tipo:   "Koadernoa",
-        lengua: "Euskara",
-        nota:   "Frogaren metodoa, bost irakurgaiak barrutik eta lau azterketa ebatzi eta iruzkindu.",
-        web: "/usap/",
-        pdf: "https://github.com/eukeni-acebal/usap/releases/latest/download/usap-koadernoa-filosofia.pdf"
-      }
-    ]
-  },
-  {
-    id: "bach1",
-    titulo: "Filosofia",
-    curso:  "1. Batxilergoa",
-    volumenes: [
-      {
-        titulo: "Filosofia",
-        tipo:   "Eskuliburua",
-        lengua: "Euskara",
-        nota:   "Zazpi unitate eta hogeita hemezortzi gai: filosofia zer den galdetzetik estetikaraino, antropologia, epistemologia, etika eta filosofia politikotik pasatuz.",
-        estado: "Argitaratua",
-        web: "/filosofia-testuliburua/",
-        pdf: "https://github.com/eukeni-acebal/filosofia-testuliburua/releases/latest/download/filosofia-testuliburua.pdf"
-      },
-      {
-        titulo: "Filosofia · Koadernoa",
-        tipo:   "Koadernoa",
-        lengua: "Gaztelania eta euskara",
-        nota:   "Geleko lanerako testuak, dizertazioa eta jarduerak.",
-        estado: "Prestatzen",
-        web: null, pdf: null
-      }
-    ]
+  function abre(n, aviso) {
+    cursos.forEach((c) => {
+      const si = c.dataset.curso === n;
+      c.classList.toggle("abierta", si);
+      c.querySelector(".curso-cab").setAttribute("aria-expanded", String(si));
+    });
+    if (n) caja.dataset.abierto = n; else caja.removeAttribute("data-abierto");
+    if (!aviso) return;
+    try { n ? localStorage.setItem("arete-curso", n) : localStorage.removeItem("arete-curso"); } catch (e) {}
+    history.replaceState(null, "", n ? "#" + n : location.pathname);
+    if (n) caja.scrollIntoView({ behavior: quieto ? "auto" : "smooth", block: "nearest" });
   }
-];
 
-const UI = { web: "Webgunean irakurri", pdf: "PDFa deskargatu" };
+  cursos.forEach((c) => {
+    c.querySelector(".curso-cab").addEventListener("click", () => {
+      abre(c.classList.contains("abierta") ? "" : c.dataset.curso, true);
+    });
+  });
 
-/* ============================================================
-   2 · PINTADO DE LA COLECCIÓN
-   ============================================================ */
-function tarjeta(v) {
-  const viva = Boolean(v.web || v.pdf);
-  const art = document.createElement("article");
-  art.className = "vol " + (viva ? "viva" : "pendiente");
+  let inicial = "";
+  const h = location.hash.slice(1);
+  if (h === "1" || h === "2") inicial = h;
+  else { try { inicial = localStorage.getItem("arete-curso") || ""; } catch (e) {} }
+  if (inicial !== "1" && inicial !== "2") inicial = "";
+  abre(inicial, false);
+  try { localStorage.removeItem("arete-rol"); } catch (e) {}
+})();
 
-  const marcas = `<div class="marcas">
-      <span class="marca-idioma">${v.lengua}</span>
-      ${viva ? "" : `<span class="estado">${v.estado}</span>`}
-    </div>`;
-
-  const acciones = viva
-    ? `<div class="acciones">
-         ${v.web ? `<a class="btn principal" href="${v.web}">${UI.web}</a>` : ""}
-         ${v.pdf ? `<a class="btn secundario" href="${v.pdf}">${UI.pdf}</a>` : ""}
-       </div>`
-    : "";
-
-  art.innerHTML = `<h3>${v.titulo}</h3>
-    <p class="tipo">${v.tipo}</p>
-    ${marcas}
-    <p class="nota">${v.nota}</p>
-    ${acciones}`;
-  return art;
-}
-
-function pintaColeccion() {
-  const destino = document.getElementById("coleccion");
-  destino.textContent = "";
-  for (const c of CURSOS) {
-    const bloque = document.createElement("div");
-    bloque.className = "curso";
-    bloque.id = c.id;
-    const rot = document.createElement("div");
-    rot.className = "curso-rotulo";
-    rot.innerHTML = `<b>${c.titulo}</b><span>${c.curso}</span>`;
-    const rej = document.createElement("div");
-    rej.className = "rejilla";
-    c.volumenes.forEach((v) => rej.appendChild(tarjeta(v)));
-    bloque.append(rot, rej);
-    destino.appendChild(bloque);
+(function () {
+  const botones = document.querySelectorAll("#tema button");
+  function fija(t) {
+    if (t === "claro" || t === "oscuro") document.documentElement.setAttribute("data-tema", t);
+    else { document.documentElement.removeAttribute("data-tema"); t = "sistema"; }
+    try { localStorage.setItem("arete-tema", t); } catch (e) {}
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tema === t)));
   }
-}
-
-/* ============================================================
-   3 · FILTRO POR ROL — condiciona qué secciones se ven, no
-   navega a un tramo de la página. «guztia» (por defecto) enseña
-   todo, como antes. Elegir un rol concreto oculta las secciones
-   marcadas con data-rol-seccion que no lo incluyan; las secciones
-   sin ese atributo (cabecera, qué es esto, la colección, pie)
-   están siempre visibles.
-   ============================================================ */
-function aplicaRol(rol) {
-  document.querySelectorAll("[data-rol-seccion]").forEach((el) => {
-    const roles = el.dataset.rolSeccion.split(" ");
-    el.hidden = rol !== "guztia" && !roles.includes(rol);
-  });
-  document.querySelectorAll("#rol-iragazkia button").forEach((b) => {
-    b.setAttribute("aria-pressed", String(b.dataset.rol === rol));
-  });
-  document.querySelectorAll("[data-rol-txartela]").forEach((el) => {
-    el.classList.toggle("activa", rol !== "guztia" && el.dataset.rolTxartela === rol);
-  });
-  try { localStorage.setItem("arete-rol", rol); } catch (e) {}
-}
-
-function montaRol() {
-  let guardado = "guztia";
-  try { guardado = localStorage.getItem("arete-rol") || "guztia"; } catch (e) {}
-  document.querySelectorAll("#rol-iragazkia button").forEach((b) => {
-    b.addEventListener("click", () => aplicaRol(b.dataset.rol));
-  });
-  // Los botones de curso en la tarjeta «Ikasleak» también fijan el rol,
-  // además de llevar a #bach1 / #bach2 (comportamiento por defecto del ancla).
-  document.querySelectorAll("[data-aukeratu-rol]").forEach((el) => {
-    el.addEventListener("click", () => aplicaRol(el.dataset.aukeratuRol));
-  });
-  aplicaRol(guardado);
-}
-
-/* ---------- tema de color ---------- */
-function fijaTema(t) {
-  if (t === "claro" || t === "oscuro") {
-    document.documentElement.setAttribute("data-tema", t);
-  } else {
-    document.documentElement.removeAttribute("data-tema");
-    t = "sistema";
-  }
-  try { localStorage.setItem("arete-tema", t); } catch (e) {}
-  document.querySelectorAll("#tema button").forEach((b) => {
-    b.setAttribute("aria-pressed", String(b.dataset.tema === t));
-  });
-}
-
-function montaTema() {
-  let guardado = "sistema";
-  try { guardado = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
-  document.querySelectorAll("#tema button").forEach((b) => {
-    b.addEventListener("click", () => fijaTema(b.dataset.tema));
-  });
-  fijaTema(guardado);
-}
-
-pintaColeccion();
-montaRol();
-montaTema();
+  let g = "sistema";
+  try { g = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
+  botones.forEach((b) => b.addEventListener("click", () => fija(b.dataset.tema)));
+  fija(g);
+})();
 </script>
 </body>
 </html>

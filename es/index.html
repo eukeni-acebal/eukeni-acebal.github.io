@@ -3,48 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")document.documentElement.setAttribute("data-tema",t);}catch(e){}})();</script>
-<title>Areté · Materiales de filosofía para Bachillerato</title>
+<script>(function(){var d=document.documentElement;d.className+=" js";try{var t=localStorage.getItem("arete-tema");if(t==="claro"||t==="oscuro")d.setAttribute("data-tema",t);}catch(e){}})();</script>
+<title>Areté · Libros de filosofía para Bachillerato</title>
 <meta name="author" content="Eukeni Acebal">
-<meta name="description" content="Colección Areté: manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos y en web y PDF.">
-<meta property="og:title" content="Areté · Materiales de filosofía para Bachillerato">
-<meta property="og:description" content="Manuales y cuadernos de Filosofía e Historia de la Filosofía, en castellano y euskera. Licencia libre CC BY-SA 4.0.">
+<meta name="description" content="Areté: manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato, en castellano y euskera. Libres y gratuitos, en la web y en PDF.">
+<meta property="og:title" content="Areté · Libros de filosofía para Bachillerato">
+<meta property="og:description" content="Manuales y cuadernos de Filosofía e Historia de la Filosofía para Bachillerato. Licencia libre CC BY-SA 4.0.">
 <meta property="og:type" content="website">
+<link rel="alternate" hreflang="eu" href="https://arete.eukeniacebal.net/">
+<link rel="alternate" hreflang="es" href="https://arete.eukeniacebal.net/es/">
 
 <!--
-  ============================================================
-  HUB DE LA COLECCIÓN ARETÉ — VERSIÓN CASTELLANO
-  BORRADOR 2026-09-01, sin revisar ni publicar.
+  Hub de la colección Areté, versión castellana (D256). La euskera vive en
+  la raíz y es la que se abre por defecto; las dos tienen la misma
+  estructura y se cambian a la vez.
 
-  Vive en `/es/` porque el sitio por defecto (`/`, arete/index.html) pasa
-  a ser la versión euskera: no tenía sentido abrir en castellano y enlazar
-  después a libros en euskera. Es la misma página que antes vivía en la
-  raíz, con estos cambios:
-   1. Enlace a «Euskarazko bertsioa» muy arriba en la cabecera.
-   2. Los enlaces a «metodo.html» pasan a ser relativos otra vez («metodo.html»,
-      no «/metodo.html»), porque ahora vive junto a este fichero en /es/
-      (ver más abajo: metodo.html se ha traducido y la versión castellana
-      se ha movido aquí).
-   3. Esta página muestra SOLO los libros en castellano (decisión de
-      Eukeni, 2026-09-01: «en la versión eu no pinta nada las versiones
-      en castellano; si alguien lo quiere en otro idioma, que cambie de
-      idioma al principio»). El cruce de idioma se resuelve una vez, en
-      la cabecera — no libro a libro. La única excepción es «Filosofía ·
-      Cuaderno», que no existe todavía en ninguna lengua: es un único
-      elemento pendiente, no una duplicación por idioma.
-   4. El filtro por rol condiciona qué secciones se ven (ver el mismo
-      mecanismo documentado en la versión euskera, arete/index.html).
-   Se ha retirado la infraestructura I18N/data-i18n/MOSTRAR_SELECTOR:
-   ya no hace falta, porque cada lengua es ahora un fichero aparte,
-   como en el resto de la colección (hf/fh, pau/usap, filosofia-manual/
-   filosofia-testuliburua).
+  Estructura: cabecera (marca, lema, firma, autoría en una frase) →
+  elección de curso → bloque para el profesorado → pie (licencia, contacto,
+  tema). Cada página enseña solo los libros de su lengua (D243).
 
-  Nota de la sesión: en «Las cifras» se ha actualizado la frase sobre el
-  euskera («2.º de Bachillerato está completo» → «están completos los
-  manuales de los dos cursos, desde el 31 de agosto»), porque el propio
-  comentario D234 de la versión anterior dice que el manual de 1.º se
-  publicó en las dos lenguas ese día. Verificar antes de publicar.
-  ============================================================
+  Comportamiento: elegir curso despliega sus volúmenes en la propia tarjeta
+  y pliega la otra en una línea. El curso se recuerda (localStorage
+  «arete-curso») y se puede enlazar: /es/#1 y /es/#2 abren la página con
+  ese curso desplegado, y el hash manda sobre lo recordado. Sin JS se ven
+  los dos cursos desplegados. El tema de color comparte la clave
+  «arete-tema» con metodo.html y los volúmenes.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,285 +35,224 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap">
 <style>
 :root{
-  /* Tokens del tema Areté (quarto-theme/custom.scss): el hub y los seis
-     volúmenes comparten paleta y tipografía, para que pasar de la portada
-     a un libro no cambie el suelo bajo los pies. */
   --papel:#f6f1e4; --tinta:#2b241a; --suave:#6e6353; --linea:#ddd3bd;
-  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.07);
+  --acento:#8f6428; --acento-flojo:#f0e9d7; --tarjeta:#fdfaf1; --sombra:rgba(43,36,26,.08);
   --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
   --sans:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-tema="claro"]){
-    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
-    --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+    --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#332e26;
+    --acento:#d0a35c; --acento-flojo:#2a231b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
   }
 }
 :root[data-tema="oscuro"]{
-  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#2e2a23;
-  --acento:#d0a35c; --acento-flojo:#2a211b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
+  --papel:#1e1b16; --tinta:#e9e1cf; --suave:#a0968a; --linea:#332e26;
+  --acento:#d0a35c; --acento-flojo:#2a231b; --tarjeta:#25211a; --sombra:rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0; background:var(--papel); color:var(--tinta);
-  font-family:var(--sans); font-size:17px; line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-.env{max-width:60rem;margin:0 auto;padding:0 1.5rem}
-a{color:var(--acento)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.env{max-width:46rem;margin:0 auto;padding:0 1.5rem}
+a{color:var(--acento);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acento);outline-offset:3px;border-radius:.3rem}
 
-/* ---------- cabecera ---------- */
-header{padding:4.5rem 0 3rem;border-bottom:1px solid var(--linea)}
-.marca{
-  font-family:var(--serif); font-size:clamp(3.2rem,11vw,5.5rem); line-height:.95;
-  letter-spacing:-.02em; margin:0; font-weight:600;
-}
+/* cabecera */
+.cabecera{padding-top:1.4rem;padding-bottom:3rem}
+.barra{display:flex;justify-content:flex-end}
+.lengua{font-size:.9rem;color:var(--suave);text-decoration:none;padding:.3rem 0}
+.lengua:hover{color:var(--acento)}
+.marca{font-family:var(--serif);font-size:clamp(3.4rem,13vw,5.6rem);line-height:.95;letter-spacing:-.02em;margin:2.2rem 0 0;font-weight:600}
 .marca .tilde{color:var(--acento)}
-.lema{
-  font-family:var(--serif); font-size:clamp(1.15rem,3.2vw,1.5rem); font-style:italic;
-  color:var(--suave); margin:.9rem 0 0; max-width:34rem;
-}
-.firma{
-  margin:1.8rem 0 0; font-size:.85rem; letter-spacing:.11em; text-transform:uppercase;
-  color:var(--suave);
-}
-.otra-lengua{margin:1.6rem 0 0}
-.otra-lengua a{
-  display:inline-flex; align-items:center; gap:.4rem; font-size:.92rem; font-weight:600;
-  text-decoration:none; padding:.55rem 1.1rem; border-radius:2rem; border:1px solid var(--acento);
-  color:var(--acento); transition:.15s;
-}
-.otra-lengua a:hover{background:var(--acento-flojo)}
-.tema{display:flex;gap:.4rem;margin:1.4rem 0 0}
-.tema button{
-  font:inherit;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;
-  background:none;border:1px solid var(--linea);color:var(--suave);
-  padding:.4rem .9rem;border-radius:2rem;cursor:pointer;transition:.15s;
-}
-.tema button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
+.lema{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,3.4vw,1.45rem);line-height:1.45;color:var(--suave);margin:.9rem 0 0;max-width:32rem}
+.firma{margin:1.4rem 0 0;font-size:.9rem;color:var(--suave)}
+.autoria{margin:.35rem 0 0;font-size:.9rem;color:var(--suave);max-width:36rem}
 
-/* ---------- secciones ---------- */
-section{padding:3.5rem 0}
-section + section{border-top:1px solid var(--linea)}
-h2{
-  font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:-.01em;
-  margin:0 0 .4rem;
-}
-.sub{color:var(--suave);margin:0 0 2.2rem;max-width:42rem}
-p{max-width:42rem}
+/* cursos */
+.libros{padding-bottom:3.5rem}
+.pregunta{font-size:.95rem;font-weight:500;color:var(--suave);margin:0 0 .9rem}
+.cursos{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem}
+.cursos[data-abierto="1"],.cursos[data-abierto="2"]{grid-template-columns:1fr}
+.curso{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.9rem;transition:border-color .2s,box-shadow .2s}
+.curso:hover{border-color:var(--acento)}
+.curso.abierta{order:-1;border-color:var(--acento);box-shadow:0 .6rem 1.8rem var(--sombra)}
+.curso-cab{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;padding:1.4rem 1.5rem 1.3rem;position:relative}
+.curso-cab::after{content:"";position:absolute;right:1.5rem;top:1.65rem;width:.55rem;height:.55rem;border-right:1.5px solid var(--suave);border-bottom:1.5px solid var(--suave);transform:rotate(45deg);transition:transform .25s var(--ease)}
+.abierta .curso-cab::after{transform:rotate(225deg);top:1.9rem}
+.nivel{display:block;font-size:.88rem;color:var(--suave)}
+.asignatura{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.2;margin:.15rem 2rem .35rem 0}
+.resumen{display:block;font-size:.95rem;color:var(--suave)}
+html.js .cursos[data-abierto] .curso:not(.abierta) .curso-cab{padding:.85rem 1.5rem}
+html.js .cursos[data-abierto] .curso:not(.abierta) .curso-cab::after{top:1.15rem;transform:rotate(-45deg)}
+html.js .cursos[data-abierto] .curso:not(.abierta) .nivel,
+html.js .cursos[data-abierto] .curso:not(.abierta) .asignatura{display:inline;font-size:1rem;margin:0}
+html.js .cursos[data-abierto] .curso:not(.abierta) .nivel::after{content:" · "}
+html.js .cursos[data-abierto] .curso:not(.abierta) .resumen{display:none}
+html.js .cursos[data-abierto=""] .curso,html.js .cursos:not([data-abierto]) .curso{min-height:9.5rem}
 
-/* ---------- curso + tarjetas ---------- */
-.curso{margin:0 0 2.8rem}
-.curso:last-child{margin-bottom:0}
-.curso-rotulo{
-  display:flex;align-items:baseline;gap:.75rem;flex-wrap:wrap;
-  margin:0 0 1.1rem;padding-bottom:.6rem;border-bottom:1px solid var(--linea);
-}
-.curso-rotulo b{font-family:var(--serif);font-size:1.35rem;font-weight:600}
-.curso-rotulo span{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
-.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem}
-.vol{
-  background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;
-  padding:1.3rem 1.4rem 1.2rem;display:flex;flex-direction:column;
-  transition:transform .15s,box-shadow .15s;
-}
-.vol.viva:hover{transform:translateY(-2px);box-shadow:0 .5rem 1.4rem var(--sombra)}
-.vol.pendiente{opacity:.62;border-style:dashed;background:none}
-.vol h3{font-family:var(--serif);font-size:1.22rem;font-weight:600;margin:0 0 .15rem;line-height:1.25}
-.vol .tipo{font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--suave);margin:0 0 .9rem}
-.vol .nota{font-size:.92rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
-.marcas{display:flex;gap:.4rem;flex-wrap:wrap;margin:0 0 .9rem}
-.marca-idioma,.estado{
-  font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:.2rem .55rem;border-radius:.3rem;
-}
-.marca-idioma{background:var(--acento-flojo);color:var(--acento)}
-.estado{border:1px solid var(--linea);color:var(--suave)}
-.acciones{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:auto}
-.btn{
-  font-size:.88rem;text-decoration:none;padding:.5rem .95rem;border-radius:.4rem;
-  border:1px solid var(--acento);transition:.15s;white-space:nowrap;
-}
+.vols{display:grid;grid-template-rows:1fr}
+html.js .vols{grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .35s var(--ease),visibility 0s .35s}
+html.js .abierta .vols{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .35s var(--ease)}
+.vols-in{overflow:hidden;padding:0 1.5rem}
+.vol{display:flex;gap:1rem 1.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:1.1rem 0;border-top:1px solid var(--linea)}
+.vol:last-child{margin-bottom:.4rem}
+.vol-txt{flex:1 1 18rem}
+.vol h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0}
+.vol p{margin:.15rem 0 0;font-size:.92rem;color:var(--suave)}
+.vol.pendiente h3{font-weight:500;color:var(--suave)}
+.vol.pendiente p{font-style:italic}
+.vol-acc{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{font-size:.9rem;text-decoration:none;padding:.5rem 1rem;border-radius:.45rem;border:1px solid var(--acento);color:var(--acento);white-space:nowrap;transition:background .15s,filter .15s}
+.btn:hover{background:var(--acento-flojo)}
 .btn.principal{background:var(--acento);color:var(--papel)}
-.btn.principal:hover{filter:brightness(1.1)}
-.btn.secundario{color:var(--acento)}
-.btn.secundario:hover{background:var(--acento-flojo)}
-.sin-enlace{font-size:.88rem;color:var(--suave);font-style:italic}
+.btn.principal:hover{filter:brightness(1.08);background:var(--acento)}
+.aviso-docente{margin:1.2rem 0 0;font-size:.92rem;color:var(--suave)}
 
-/* ---------- método (resumen) ---------- */
-.metodo{max-width:42rem}
-.metodo p{margin:0 0 1.1rem}
-.hechos{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:.1rem}
-.hechos li{display:flex;gap:1rem;padding:.7rem 0;border-top:1px solid var(--linea);align-items:baseline}
-.hechos b{font-family:var(--serif);font-size:1.5rem;color:var(--acento);min-width:5.5rem;font-weight:600}
-.hechos span{font-size:.94rem;color:var(--suave)}
+/* profesorado */
+.profesorado{padding:3.5rem 0;border-top:1px solid var(--linea)}
+.profesorado h2{font-family:var(--serif);font-size:1.8rem;font-weight:600;letter-spacing:-.01em;margin:0}
+.profesorado .sub{color:var(--suave);margin:.3rem 0 2rem}
+.piezas{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:2rem 2.5rem}
+.pieza h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:0 0 .35rem}
+.pieza p{margin:0;font-size:.95rem;color:var(--suave)}
+.pieza .enlaces{margin-top:.6rem;color:var(--tinta)}
+.pdfs{list-style:none;padding:0;margin:.2rem 0 0}
+.pdfs li{border-top:1px solid var(--linea)}
+.pdfs li:first-child{border-top:none}
+.pdfs a{display:flex;justify-content:space-between;gap:1rem;padding:.45rem 0;font-size:.95rem;text-decoration:none}
+.pdfs a:hover{text-decoration:underline}
+.pdfs small{color:var(--suave);font-size:.85rem}
+.contacto{margin:2.5rem 0 0;font-size:.95rem;color:var(--suave)}
 
-/* ---------- pie ---------- */
-footer{border-top:1px solid var(--linea);padding:2.8rem 0 4rem;font-size:.92rem;color:var(--suave)}
-footer p{margin:0 0 .7rem}
-.cc{display:inline-flex;gap:.3rem;align-items:center;font-weight:600;color:var(--acento)}
+/* pie */
+footer{border-top:1px solid var(--linea);padding:2.2rem 0 3.5rem;font-size:.85rem;color:var(--suave)}
+footer p{margin:0 0 .6rem;max-width:40rem}
+.tema{display:flex;align-items:center;gap:.2rem;margin-top:1.2rem}
+.tema span{margin-right:.4rem}
+.tema button{font:inherit;background:none;border:none;color:var(--suave);padding:.2rem .45rem;border-radius:.3rem;cursor:pointer}
+.tema button:hover{color:var(--tinta)}
+.tema button[aria-pressed="true"]{color:var(--acento);background:var(--acento-flojo)}
+
 @media (max-width:32rem){
   body{font-size:16px}
-  header{padding:3rem 0 2.2rem}
-  .hechos li{flex-direction:column;gap:.1rem}
+  .curso-cab{padding:1.2rem 1.2rem 1.1rem}
+  .curso-cab::after{right:1.2rem}
+  .vols-in{padding:0 1.2rem}
+  .vol-acc{width:100%}
+  .vol-acc .btn{flex:1;text-align:center}
 }
-
-/* ---------- roles + filtro ---------- */
-.rol-iragazkia{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:0 0 2rem}
-.rol-iragazkia .etik{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
-.rol-iragazkia button{
-  font:inherit;font-size:.85rem;background:none;border:1px solid var(--linea);color:var(--suave);
-  padding:.45rem 1rem;border-radius:2rem;cursor:pointer;transition:.15s;
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
 }
-.rol-iragazkia button[aria-pressed="true"]{background:var(--acento);border-color:var(--acento);color:var(--papel)}
-.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.1rem;margin-top:.5rem}
-.rol{background:var(--tarjeta);border:1px solid var(--linea);border-radius:.7rem;padding:1.4rem 1.5rem;display:flex;flex-direction:column;transition:.15s}
-.rol.activa{border-color:var(--acento)}
-.rol h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:0 0 .6rem}
-.rol p{font-size:.95rem;color:var(--suave);margin:0 0 1.1rem;flex:1}
-.rol-botones{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto}
-
-/* ---------- descargas ---------- */
-.descargas{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.6rem}
-.descargas li{display:flex}
-.descargas a{
-  flex:1;font-size:.9rem;text-decoration:none;padding:.6rem 1rem;border-radius:.4rem;
-  border:1px solid var(--linea);color:var(--tinta);display:flex;justify-content:space-between;gap:.6rem;
-  align-items:baseline;
-}
-.descargas a:hover{border-color:var(--acento);color:var(--acento)}
-.descargas small{color:var(--suave);font-weight:400;white-space:nowrap}
-
-/* ---------- novedades ---------- */
-.novedades{list-style:none;padding:0;margin:0}
-.novedades li{padding:.9rem 0;border-top:1px solid var(--linea);display:flex;gap:1rem;flex-wrap:wrap}
-.novedades li:first-child{border-top:none}
-.novedades time{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--suave);min-width:7rem}
-.novedades span{font-size:.95rem;flex:1;min-width:14rem}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="env">
-    <h1 class="marca">Aret<span class="tilde">é</span></h1>
-    <p class="lema">Manuales y cuadernos de filosofía para Bachillerato, en castellano y euskera. Libres, gratuitos, en la web y en papel.</p>
-    <p class="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
-    <nav class="otra-lengua" aria-label="Idioma">
-      <a href="/">Euskarazko bertsioa →</a>
-    </nav>
-    <nav class="tema" id="tema" aria-label="Tema de color">
-      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
-      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
-      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
-    </nav>
-  </div>
+<header class="cabecera env">
+  <div class="barra"><a class="lengua" href="/" hreflang="eu" lang="eu">Euskaraz</a></div>
+  <h1 class="marca">Aret<span class="tilde">é</span></h1>
+  <p class="lema">Libros de filosofía para Bachillerato, libres y gratuitos, en la web y en papel.</p>
+  <p class="firma">Eukeni Acebal · IES Minas BHI, Barakaldo</p>
+  <p class="autoria">Los borradores los redacta un modelo de lenguaje, Claude; la concepción, la edición y la responsabilidad son mías. <a href="metodo.html">Cómo los he hecho</a></p>
 </header>
 
 <main>
 
-<section>
-  <div class="env">
-    <h2>Qué es esto</h2>
-    <div class="metodo">
-      <p>Areté es una colección de libros de texto de filosofía escritos para un aula concreta: la de un instituto público de Barakaldo. No los edita nadie. No cuestan nada. Cubren el currículo oficial completo de las dos asignaturas de Bachillerato y existen en las dos lenguas en que se estudia aquí.</p>
-      <p>Publico cada volumen de dos maneras a la vez: una <strong>edición web</strong> que se lee en cualquier pantalla y enlaza sección por sección, y un <strong>PDF</strong> maquetado para imprimir y encuadernar. Es el mismo texto. Y son libros vivos: los corrijo y los amplío curso a curso, en lugar de esperar a una reedición cada seis años.</p>
-    </div>
-  </div>
-</section>
+<section class="libros env" aria-labelledby="t-cursos">
+  <h2 class="pregunta" id="t-cursos">Elige curso</h2>
+  <div class="cursos" id="cursos">
 
-<section>
-  <div class="env">
-    <h2>Empieza por lo tuyo</h2>
-    <p class="sub">Tres puertas distintas, según para qué vienes.</p>
-
-    <nav class="rol-iragazkia" id="rol-iragazkia" aria-label="Filtrar lo que se ve">
-      <span class="etik">Mostrar:</span>
-      <button type="button" data-rol="guztia" aria-pressed="true">Todo</button>
-      <button type="button" data-rol="ikasleak" aria-pressed="false">Alumnado</button>
-      <button type="button" data-rol="irakasleak" aria-pressed="false">Profesorado</button>
-      <button type="button" data-rol="administrazioa" aria-pressed="false">Administración educativa</button>
-    </nav>
-
-    <div class="roles">
-      <article class="rol" data-rol-txartela="ikasleak">
-        <h3>Alumnado</h3>
-        <p>¿Qué libro es el tuyo? Empieza por tu curso.</p>
-        <div class="rol-botones">
-          <a class="btn principal" href="#bach1" data-aukeratu-rol="ikasleak">Voy a 1.º</a>
-          <a class="btn principal" href="#bach2" data-aukeratu-rol="ikasleak">Voy a 2.º</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Sugerencia%20%C2%B7%20Alumnado">Avisar de algo</a>
+    <article class="curso" data-curso="1">
+      <button class="curso-cab" type="button" aria-expanded="false" aria-controls="vols-1">
+        <span class="nivel">1.º de Bachillerato</span>
+        <span class="asignatura">Filosofía</span>
+        <span class="resumen">De qué es la filosofía a la estética.</span>
+      </button>
+      <div class="vols" id="vols-1"><div class="vols-in">
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>Manual</h3>
+            <p>Siete unidades y treinta y ocho temas: antropología, epistemología, ética, filosofía política y estética.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/filosofia-manual/">Leer en la web</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Descargar PDF</a>
+          </div>
         </div>
-      </article>
-      <article class="rol" data-rol-txartela="irakasleak">
-        <h3>Profesorado</h3>
-        <p>Para evaluar un manual hace falta el índice, no solo la portada: cada libro abre con el suyo completo en el panel lateral. La licencia libre permite además imprimirlo para el aula y hacer tu propia versión, citando la autoría y compartiendo con la misma libertad.</p>
-        <div class="rol-botones">
-          <a class="btn secundario" href="/filosofia-manual/" data-aukeratu-rol="irakasleak">Índice · Filosofía (1.º)</a>
-          <a class="btn secundario" href="/hf/" data-aukeratu-rol="irakasleak">Índice · Historia de la Filosofía (2.º)</a>
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="irakasleak">Cómo los he hecho</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Profesorado" data-aukeratu-rol="irakasleak">Escríbeme</a>
+        <div class="vol pendiente">
+          <div class="vol-txt">
+            <h3>Cuaderno de textos y actividades</h3>
+            <p>En preparación.</p>
+          </div>
         </div>
-      </article>
-      <article class="rol" data-rol-txartela="administrazioa">
-        <h3>Administración educativa</h3>
-        <p>Antes de adoptar algo así hace falta saber quién responde de ello y qué procedimiento hay detrás: llevo un registro de decisiones, un control de derechos de cita y un rastro de autoría, documentados y abiertos a inspección. Y es gratuito, con licencia libre CC BY-SA.</p>
-        <div class="rol-botones">
-          <a class="btn secundario" href="metodo.html" data-aukeratu-rol="administrazioa">Cómo los he hecho</a>
-          <a class="btn secundario" href="mailto:arete.eukeni@gmail.com?subject=Consulta%20%C2%B7%20Administraci%C3%B3n%20educativa" data-aukeratu-rol="administrazioa">Escríbeme</a>
+      </div></div>
+    </article>
+
+    <article class="curso" data-curso="2">
+      <button class="curso-cab" type="button" aria-expanded="false" aria-controls="vols-2">
+        <span class="nivel">2.º de Bachillerato</span>
+        <span class="asignatura">Historia de la Filosofía</span>
+        <span class="resumen">El pensamiento occidental, y la preparación de la PAU.</span>
+      </button>
+      <div class="vols" id="vols-2"><div class="vols-in">
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>Manual</h3>
+            <p>El pensamiento occidental desde sus inicios hasta hoy, en cinco partes y veintidós temas.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/hf/">Leer en la web</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">Descargar PDF</a>
+          </div>
         </div>
-      </article>
+        <div class="vol">
+          <div class="vol-txt">
+            <h3>Preparación de la PAU</h3>
+            <p>El método de cada ejercicio, las cinco lecturas por dentro y cuatro exámenes resueltos y comentados.</p>
+          </div>
+          <div class="vol-acc">
+            <a class="btn principal" href="/pau/">Leer en la web</a>
+            <a class="btn" href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">Descargar PDF</a>
+          </div>
+        </div>
+      </div></div>
+    </article>
+
+  </div>
+  <p class="aviso-docente">¿Das clase? <a href="#profesorado">Índices, licencia y método, más abajo</a></p>
+</section>
+
+<section class="profesorado" id="profesorado" aria-labelledby="t-prof">
+  <div class="env">
+    <h2 id="t-prof">Para el profesorado</h2>
+    <p class="sub">Si vas a evaluarlos o a usarlos en tu aula.</p>
+    <div class="piezas">
+      <div class="pieza">
+        <h3>El índice completo</h3>
+        <p>Para evaluar un manual hace falta el índice, no solo la portada: cada libro abre con el suyo entero en el panel lateral.</p>
+        <p class="enlaces"><a href="/filosofia-manual/">Filosofía (1.º)</a> · <a href="/hf/">Historia de la Filosofía (2.º)</a></p>
+      </div>
+      <div class="pieza">
+        <h3>Licencia libre</h3>
+        <p>CC BY-SA 4.0: puedes imprimirlos para el aula, repartirlos y hacer tu propia versión, citando la autoría y compartiendo con la misma libertad.</p>
+      </div>
+      <div class="pieza">
+        <h3>Cómo los he hecho</h3>
+        <p>Un registro de decisiones, un control de derechos de cita y un rastro de autoría pieza a pieza, documentados y abiertos a inspección.</p>
+        <p class="enlaces"><a href="metodo.html">El procedimiento completo, paso a paso</a></p>
+      </div>
+      <div class="pieza">
+        <h3>Todos los PDF</h3>
+        <ul class="pdfs">
+          <li><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Filosofía · Manual <small>1.º</small></a></li>
+          <li><a href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">Historia de la Filosofía <small>2.º</small></a></li>
+          <li><a href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">Preparación de la PAU <small>2.º</small></a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="env">
-    <h2>La colección</h2>
-    <p class="sub">Los de 2.º de Bachillerato están completos y disponibles en las dos lenguas, y el manual de 1.º también, desde este curso. Falta su cuaderno de textos y actividades.</p>
-    <div id="coleccion"></div>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Descargar el paquete completo</h2>
-    <p class="sub">Los seis PDF que he publicado hasta hoy, uno por uno, sin pasar por cada portada.</p>
-    <ul class="descargas">
-      <li><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">Filosofía · Manual <small>1.º · castellano</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">Historia de la Filosofía <small>2.º · castellano</small></a></li>
-      <li><a href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">Preparación de la PAU <small>2.º · castellano</small></a></li>
-    </ul>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Cómo los he hecho</h2>
-    <div class="metodo">
-      <p>Conviene decirlo en la puerta y no en la letra pequeña: <strong>no escribo a mano los borradores de estos libros.</strong> Los produjo un modelo de lenguaje, Claude (Anthropic), a partir de mis instrucciones y bajo mi edición. La concepción, la estructura, la selección de qué entra y qué se queda fuera, el ajuste al currículo, la terminología y la revisión final son mías, y mía es la responsabilidad de cuanto afirmo en ellos.</p>
-      <p>Lo digo porque es verdad y porque el procedimiento está documentado: hay un registro de decisiones numerado, un mapa de cobertura del currículo apartado por apartado, un control de derechos de cita texto a texto y un rastro de autoría pieza a pieza que permite saber qué mano redactó cada tramo. Nada de eso es habitual en un libro de texto, y creo que debería serlo.</p>
-      <p><strong>Y no doy ninguna página por infalible.</strong> Si encuentras una errata, algo mal atribuido o algo que pueda explicarse mejor, escríbeme diciéndome dónde está: cada aviso mejora la edición siguiente.</p>
-      <p><a href="metodo.html"><strong>El procedimiento completo, paso a paso →</strong></a> Con las cifras medidas y, sobre todo, con lo que este método <em>no</em> resuelve.</p>
-      <ul class="hechos">
-        <li><b>272.000</b><span>palabras de cuerpo en castellano, con el currículo oficial completo de las dos asignaturas. En euskera, están completos los dos manuales de 2.º y, desde el 31 de agosto, también el de 1.º.</span></li>
-        <li><b>CC</b><span>licencia libre BY-SA 4.0: se puede copiar, adaptar y construir encima.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section data-rol-seccion="irakasleak administrazioa">
-  <div class="env">
-    <h2>Qué ha cambiado</h2>
-    <p class="sub">Son libros vivos: los corrijo y los amplío curso a curso. Las últimas novedades.</p>
-    <ul class="novedades">
-      <li><time>31-08-2026</time><span>Publico el manual de Filosofía de 1.º en las dos lenguas, en web y en PDF.</span></li>
-      <li><time>31-08-2026</time><span>Doy a las seis portadas botones directos —leer, PDF, otra lengua, avisar de una errata— y el distintivo de licencia, visibles también desde dentro de cada libro.</span></li>
-      <li><time>28-08-2026</time><span>Cierro la traducción al euskera de Filosofía de 1.º: 52 piezas, con paridad exacta respecto al castellano.</span></li>
-      <li><time>25-08-2026</time><span>Unifico el aspecto visual entre esta portada y los seis libros: misma paleta y tipografía.</span></li>
-    </ul>
+    <p class="contacto">¿Una errata, una duda, una propuesta? <a href="mailto:arete.eukeni@gmail.com?subject=Aret%C3%A9">Escríbeme</a></p>
   </div>
 </section>
 
@@ -338,182 +260,65 @@ footer p{margin:0 0 .7rem}
 
 <footer>
   <div class="env">
-    <p><span class="cc">Creative Commons BY-SA 4.0</span> — puedes usar, copiar, compartir y adaptar estos libros, incluso para construir materiales nuevos, reconociendo la autoría y compartiendo lo que hagas con la misma libertad. Los textos de filósofos citados en ellos pertenecen a sus autores y traductores y no están cubiertos por esta licencia.</p>
+    <p>Creative Commons BY-SA 4.0. Los textos de filósofos citados en estos libros pertenecen a sus autores y traductores y no están cubiertos por esta licencia.</p>
     <p>Eukeni Acebal · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
+    <nav class="tema" id="tema" aria-label="Tema de color">
+      <span>Tema:</span>
+      <button type="button" data-tema="sistema" aria-pressed="true">Sistema</button>
+      <button type="button" data-tema="claro" aria-pressed="false">Claro</button>
+      <button type="button" data-tema="oscuro" aria-pressed="false">Oscuro</button>
+    </nav>
   </div>
 </footer>
 
 <script>
 "use strict";
+(function () {
+  const caja = document.getElementById("cursos");
+  const cursos = [...caja.querySelectorAll(".curso")];
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ============================================================
-   1 · LOS VOLÚMENES — versión castellano. Solo ediciones en
-   castellano (decisión de Eukeni, 2026-09-01: cada hub muestra solo
-   su lengua; el cruce de idioma se resuelve una vez, en la
-   cabecera). El único elemento sin lengua fijada es «Filosofía ·
-   Cuaderno», pendiente en las dos. Si cambia un enlace o un PDF,
-   cambiar también en /index.html (versión euskera).
-   ============================================================ */
-const CURSOS = [
-  {
-    id: "bach2",
-    titulo: "Historia de la Filosofía",
-    curso:  "2.º de Bachillerato",
-    volumenes: [
-      {
-        titulo: "Historia de la Filosofía",
-        tipo:   "Manual",
-        lengua: "Castellano",
-        nota:   "El pensamiento occidental desde sus inicios hasta hoy, en cinco partes y veintidós temas.",
-        web: "/hf/",
-        pdf: "https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf"
-      },
-      {
-        titulo: "Preparación de la PAU",
-        tipo:   "Cuaderno",
-        lengua: "Castellano",
-        nota:   "El método de cada ejercicio, las cinco lecturas por dentro y los cuatro exámenes resueltos y comentados.",
-        web: "/pau/",
-        pdf: "https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf"
-      }
-    ]
-  },
-  {
-    id: "bach1",
-    titulo: "Filosofía",
-    curso:  "1.º de Bachillerato",
-    volumenes: [
-      {
-        titulo: "Filosofía",
-        tipo:   "Manual",
-        lengua: "Castellano",
-        nota:   "Siete unidades y treinta y ocho temas: de qué es la filosofía a la estética, pasando por antropología, epistemología, ética y filosofía política.",
-        estado: "Publicado",
-        web: "/filosofia-manual/",
-        pdf: "https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf"
-      },
-      {
-        titulo: "Filosofía · Cuaderno",
-        tipo:   "Cuaderno",
-        lengua: "Castellano y euskera",
-        nota:   "Textos, disertación y actividades para el trabajo de aula.",
-        estado: "En preparación",
-        web: null, pdf: null
-      }
-    ]
+  function abre(n, aviso) {
+    cursos.forEach((c) => {
+      const si = c.dataset.curso === n;
+      c.classList.toggle("abierta", si);
+      c.querySelector(".curso-cab").setAttribute("aria-expanded", String(si));
+    });
+    if (n) caja.dataset.abierto = n; else caja.removeAttribute("data-abierto");
+    if (!aviso) return;
+    try { n ? localStorage.setItem("arete-curso", n) : localStorage.removeItem("arete-curso"); } catch (e) {}
+    history.replaceState(null, "", n ? "#" + n : location.pathname);
+    if (n) caja.scrollIntoView({ behavior: quieto ? "auto" : "smooth", block: "nearest" });
   }
-];
 
-const UI = { web: "Leer en la web", pdf: "Descargar PDF" };
+  cursos.forEach((c) => {
+    c.querySelector(".curso-cab").addEventListener("click", () => {
+      abre(c.classList.contains("abierta") ? "" : c.dataset.curso, true);
+    });
+  });
 
-/* ============================================================
-   2 · PINTADO DE LA COLECCIÓN
-   ============================================================ */
-function tarjeta(v) {
-  const viva = Boolean(v.web || v.pdf);
-  const art = document.createElement("article");
-  art.className = "vol " + (viva ? "viva" : "pendiente");
+  let inicial = "";
+  const h = location.hash.slice(1);
+  if (h === "1" || h === "2") inicial = h;
+  else { try { inicial = localStorage.getItem("arete-curso") || ""; } catch (e) {} }
+  if (inicial !== "1" && inicial !== "2") inicial = "";
+  abre(inicial, false);
+  try { localStorage.removeItem("arete-rol"); } catch (e) {}
+})();
 
-  const marcas = `<div class="marcas">
-      <span class="marca-idioma">${v.lengua}</span>
-      ${viva ? "" : `<span class="estado">${v.estado}</span>`}
-    </div>`;
-
-  const acciones = viva
-    ? `<div class="acciones">
-         ${v.web ? `<a class="btn principal" href="${v.web}">${UI.web}</a>` : ""}
-         ${v.pdf ? `<a class="btn secundario" href="${v.pdf}">${UI.pdf}</a>` : ""}
-       </div>`
-    : "";
-
-  art.innerHTML = `<h3>${v.titulo}</h3>
-    <p class="tipo">${v.tipo}</p>
-    ${marcas}
-    <p class="nota">${v.nota}</p>
-    ${acciones}`;
-  return art;
-}
-
-function pintaColeccion() {
-  const destino = document.getElementById("coleccion");
-  destino.textContent = "";
-  for (const c of CURSOS) {
-    const bloque = document.createElement("div");
-    bloque.className = "curso";
-    bloque.id = c.id;
-    const rot = document.createElement("div");
-    rot.className = "curso-rotulo";
-    rot.innerHTML = `<b>${c.titulo}</b><span>${c.curso}</span>`;
-    const rej = document.createElement("div");
-    rej.className = "rejilla";
-    c.volumenes.forEach((v) => rej.appendChild(tarjeta(v)));
-    bloque.append(rot, rej);
-    destino.appendChild(bloque);
+(function () {
+  const botones = document.querySelectorAll("#tema button");
+  function fija(t) {
+    if (t === "claro" || t === "oscuro") document.documentElement.setAttribute("data-tema", t);
+    else { document.documentElement.removeAttribute("data-tema"); t = "sistema"; }
+    try { localStorage.setItem("arete-tema", t); } catch (e) {}
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tema === t)));
   }
-}
-
-/* ============================================================
-   3 · FILTRO POR ROL — condiciona qué secciones se ven, no
-   navega a un tramo de la página. «Todo» (por defecto) enseña
-   todo, como antes. Elegir un rol concreto oculta las secciones
-   marcadas con data-rol-seccion que no lo incluyan; las secciones
-   sin ese atributo (cabecera, qué es esto, la colección, pie)
-   están siempre visibles.
-   ============================================================ */
-function aplicaRol(rol) {
-  document.querySelectorAll("[data-rol-seccion]").forEach((el) => {
-    const roles = el.dataset.rolSeccion.split(" ");
-    el.hidden = rol !== "guztia" && !roles.includes(rol);
-  });
-  document.querySelectorAll("#rol-iragazkia button").forEach((b) => {
-    b.setAttribute("aria-pressed", String(b.dataset.rol === rol));
-  });
-  document.querySelectorAll("[data-rol-txartela]").forEach((el) => {
-    el.classList.toggle("activa", rol !== "guztia" && el.dataset.rolTxartela === rol);
-  });
-  try { localStorage.setItem("arete-rol", rol); } catch (e) {}
-}
-
-function montaRol() {
-  let guardado = "guztia";
-  try { guardado = localStorage.getItem("arete-rol") || "guztia"; } catch (e) {}
-  document.querySelectorAll("#rol-iragazkia button").forEach((b) => {
-    b.addEventListener("click", () => aplicaRol(b.dataset.rol));
-  });
-  // Los botones de curso en la tarjeta «Alumnado» también fijan el rol,
-  // además de llevar a #bach1 / #bach2 (comportamiento por defecto del ancla).
-  document.querySelectorAll("[data-aukeratu-rol]").forEach((el) => {
-    el.addEventListener("click", () => aplicaRol(el.dataset.aukeratuRol));
-  });
-  aplicaRol(guardado);
-}
-
-/* ---------- tema de color ---------- */
-function fijaTema(t) {
-  if (t === "claro" || t === "oscuro") {
-    document.documentElement.setAttribute("data-tema", t);
-  } else {
-    document.documentElement.removeAttribute("data-tema");
-    t = "sistema";
-  }
-  try { localStorage.setItem("arete-tema", t); } catch (e) {}
-  document.querySelectorAll("#tema button").forEach((b) => {
-    b.setAttribute("aria-pressed", String(b.dataset.tema === t));
-  });
-}
-
-function montaTema() {
-  let guardado = "sistema";
-  try { guardado = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
-  document.querySelectorAll("#tema button").forEach((b) => {
-    b.addEventListener("click", () => fijaTema(b.dataset.tema));
-  });
-  fijaTema(guardado);
-}
-
-pintaColeccion();
-montaRol();
-montaTema();
+  let g = "sistema";
+  try { g = localStorage.getItem("arete-tema") || "sistema"; } catch (e) {}
+  botones.forEach((b) => b.addEventListener("click", () => fija(b.dataset.tema)));
+  fija(g);
+})();
 </script>
 </body>
 </html>
