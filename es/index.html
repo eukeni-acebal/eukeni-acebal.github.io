@@ -108,16 +108,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--acento);outline-off
 .azal img{display:block;width:100%;height:auto;aspect-ratio:440/622}
 a.azal:hover{transform:translateY(-6px)}
 .libro h3{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin:1rem 0 .1rem;line-height:1.25}
-.acc{display:flex;gap:1rem;font-size:.95rem;margin:0}
-.acc a{text-decoration:none}
-.acc a:hover{text-decoration:underline}
-.acc .pri{font-weight:600}
+.acc{display:flex;gap:.45rem;flex-wrap:wrap;margin:.55rem 0 0}
+.btn{display:inline-flex;align-items:center;gap:.35rem;font-size:.9rem;font-weight:600;line-height:1;padding:.55rem .95rem;border-radius:.45rem;border:1px solid var(--acento);text-decoration:none;transition:background .15s,filter .15s}
+.btn svg{width:.95rem;height:.95rem}
+.btn.pri{background:var(--acento);color:var(--papel)}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.sec{color:var(--acento)}
+.btn.sec:hover{background:var(--acento-flojo)}
+.pendiente .acc{display:block;margin-top:.3rem}
 .fantasma{aspect-ratio:440/622;border:1.5px dashed var(--linea);border-radius:2px 5px 5px 2px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.35rem;text-align:center;padding:1rem;color:var(--suave);box-shadow:none;background:transparent}
 .fantasma::after{display:none}
 .fantasma .num{font-family:var(--serif);font-size:1.6rem;color:var(--acento);opacity:.7}
 .fantasma .tit{font-family:var(--serif);font-size:1.05rem}
 .pendiente h3{color:var(--suave);font-weight:500}
-.pendiente .acc{color:var(--suave);font-style:italic}
+.pendiente .acc{color:var(--suave);font-style:italic;font-size:.95rem}
 
 /* banda del profesorado */
 .banda{background:var(--banda);color:var(--banda-tinta);padding:4.5rem 0}
@@ -128,7 +132,7 @@ a.azal:hover{transform:translateY(-6px)}
 .cifras p{margin:0}
 .cifras b{display:block;font-family:var(--serif);font-size:2.3rem;font-weight:600;line-height:1.1;color:var(--banda-acento)}
 .cifras span{font-size:.95rem;color:var(--banda-suave)}
-.piezas{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:2rem 3rem;margin-top:2.6rem}
+.piezas{margin-top:2.6rem;max-width:40rem}
 .pieza h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:0 0 .35rem}
 .pieza p{margin:0;font-size:.97rem;color:var(--banda-suave)}
 .pieza .enlaces{margin-top:.7rem;color:var(--banda-tinta)}
@@ -183,12 +187,12 @@ footer p{margin:0 0 .5rem;max-width:44rem}
         <article class="libro" data-titulo="Filosofía · Manual">
           <a class="azal" href="/filosofia-manual/" tabindex="-1" aria-hidden="true"><img src="/assets/azalak/filosofia-manual.webp" width="440" height="622" alt=""></a>
           <h3>Manual</h3>
-          <p class="acc"><a class="pri" href="/filosofia-manual/">Leer<span class="oculto"> el manual de Filosofía</span></a><a href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf">PDF<span class="oculto"> del manual de Filosofía</span></a></p>
+          <p class="acc"><a class="btn pri" href="/filosofia-manual/">Leer<span class="oculto"> el manual de Filosofía</span></a><a class="btn sec" href="https://github.com/eukeni-acebal/filosofia-manual/releases/latest/download/filosofia-manual.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>PDF<span class="oculto"> del manual de Filosofía</span></a></p>
         </article>
         <article class="libro pendiente">
           <div class="azal fantasma" aria-hidden="true"><span class="num">II</span><span class="tit">Filosofía</span><span>Textos y actividades</span></div>
           <h3>Cuaderno</h3>
-          <p class="acc">En preparación</p>
+          <p class="acc">Lo estoy escribiendo</p>
         </article>
       </div>
     </section>
@@ -199,12 +203,12 @@ footer p{margin:0 0 .5rem;max-width:44rem}
         <article class="libro" data-titulo="Historia de la Filosofía · Manual">
           <a class="azal" href="/hf/" tabindex="-1" aria-hidden="true"><img src="/assets/azalak/hf.webp" width="440" height="622" alt=""></a>
           <h3>Manual</h3>
-          <p class="acc"><a class="pri" href="/hf/">Leer<span class="oculto"> el manual de Historia de la Filosofía</span></a><a href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf">PDF<span class="oculto"> del manual de Historia de la Filosofía</span></a></p>
+          <p class="acc"><a class="btn pri" href="/hf/">Leer<span class="oculto"> el manual de Historia de la Filosofía</span></a><a class="btn sec" href="https://github.com/eukeni-acebal/hf/releases/latest/download/historia-de-la-filosofia.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>PDF<span class="oculto"> del manual de Historia de la Filosofía</span></a></p>
         </article>
         <article class="libro" data-titulo="Preparación de la PAU">
           <a class="azal" href="/pau/" tabindex="-1" aria-hidden="true"><img src="/assets/azalak/pau.webp" width="440" height="622" alt=""></a>
           <h3>Preparación de la PAU</h3>
-          <p class="acc"><a class="pri" href="/pau/">Leer<span class="oculto"> el cuaderno de la PAU</span></a><a href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf">PDF<span class="oculto"> del cuaderno de la PAU</span></a></p>
+          <p class="acc"><a class="btn pri" href="/pau/">Leer<span class="oculto"> el cuaderno de la PAU</span></a><a class="btn sec" href="https://github.com/eukeni-acebal/pau/releases/latest/download/cuaderno-pau-filosofia.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>PDF<span class="oculto"> del cuaderno de la PAU</span></a></p>
         </article>
       </div>
     </section>
@@ -215,7 +219,7 @@ footer p{margin:0 0 .5rem;max-width:44rem}
 <section class="banda" id="profesorado" aria-labelledby="t-prof">
   <div class="env">
     <h2 id="t-prof">Para el profesorado</h2>
-    <p class="entrada">Libros completos, con el currículo oficial entero, que puedes evaluar, imprimir y adaptar para tu aula.</p>
+    <p class="entrada">Libros completos, con el currículo oficial entero, que puedes leer de principio a fin antes de decidir, imprimir y adaptar para tu aula.</p>
     <div class="cifras">
       <p><b>0 €</b><span>Gratuitos, en la web y en PDF.</span></p>
       <p><b>CC BY-SA</b><span>Puedes imprimirlos, repartirlos y adaptarlos, citando la autoría y compartiendo con la misma licencia.</span></p>
@@ -223,13 +227,8 @@ footer p{margin:0 0 .5rem;max-width:44rem}
     </div>
     <div class="piezas">
       <div class="pieza">
-        <h3>El índice completo</h3>
-        <p>Para evaluar un manual hace falta el índice, no solo la portada: cada libro abre con el suyo entero en el panel lateral.</p>
-        <p class="enlaces"><a href="/filosofia-manual/">Filosofía (1.º)</a> · <a href="/hf/">Historia de la Filosofía (2.º)</a></p>
-      </div>
-      <div class="pieza">
         <h3>Cómo los he hecho</h3>
-        <p>Un registro de decisiones, un control de derechos de cita y un rastro de autoría pieza a pieza, documentados y abiertos a inspección.</p>
+        <p>Llevo un registro de decisiones, un control de derechos de cita y un rastro de autoría pieza a pieza, y cualquiera puede inspeccionarlos.</p>
         <p class="enlaces"><a href="metodo.html">El procedimiento completo, paso a paso</a></p>
       </div>
     </div>
@@ -241,7 +240,7 @@ footer p{margin:0 0 .5rem;max-width:44rem}
 
 <footer>
   <div class="env">
-    <p>Creative Commons BY-SA 4.0. Los textos de filósofos citados en estos libros pertenecen a sus autores y traductores y no están cubiertos por esta licencia.</p>
+    <p>Creative Commons BY-SA 4.0. Los textos de filósofos que cito en estos libros pertenecen a sus autores y traductores, y esta licencia no los cubre.</p>
     <p>Eukeni Acebal · <a href="mailto:arete.eukeni@gmail.com">arete.eukeni@gmail.com</a></p>
   </div>
 </footer>
